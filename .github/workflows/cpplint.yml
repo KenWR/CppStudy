@@ -1,16 +1,24 @@
-name: cpplint
+name: C++ Linting
 
-on: 
+on:
   push:
-    branches: [main]
+    branches:
+      - master
   pull_request:
-    branches: [main]
+    branches:
+      - master
 
 jobs:
   cpplint:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
-      - uses: actions/setup-python@v2
-      - run: pip install cpplint
-      - run: cpplint --recursive .
+      - name: Checkout code
+        uses: actions/checkout@v2
+      - name: Setup Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: '3.x'
+      - name: Install cpplint
+        run: pip install cpplint
+      - name: Run cpplint
+        run: cpplint --recursive ./**/*.cpp ./**/*.hpp
