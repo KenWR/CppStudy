@@ -18,4 +18,4 @@ jobs:
       - name: For globstar  
         run: shopt -s globstar
       - name: Run cpplint
-        run: cpplint --recursive ./**/*.cpp ./**/*.hpp
+        run: find . -name "*.cpp" -o -name "*.hpp" | xargs cpplint
