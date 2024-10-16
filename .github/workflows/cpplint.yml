@@ -15,5 +15,7 @@ jobs:
           python-version: '3.x'
       - name: Install cpplint
         run: pip install cpplint
+      - name: For globstar  
+        run: shopt -s globstar
       - name: Run cpplint
         run: cpplint --recursive ./**/*.cpp ./**/*.hpp
