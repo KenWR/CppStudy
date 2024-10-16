@@ -21,4 +21,4 @@ jobs:
       - name: Install cpplint
         run: pip install cpplint
       - name: Run cpplint
-        run: cpplint --recursive ./**/*.cpp ./**/*.hpp
+        run: cpplint --recursive *.cpp *.hpp
