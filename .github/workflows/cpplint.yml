@@ -19,3 +19,5 @@ jobs:
         run: shopt -s globstar
       - name: Run cpplint
         run: find . -name "*.cpp" -o -name "*.hpp" | xargs cpplint
+        # run: git diff --name-only --diff-filter=AM HEAD~1 HEAD -- '*.cpp' '*.hpp' | xargs cpplint
+
