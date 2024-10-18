@@ -11,28 +11,21 @@ const int Fixed::fractional_bits = 8;
  * @brief initialized the fixed-point number value to 0
 */
 Fixed::Fixed() : fixed_point_number_( 0 ) {
-	std::cout << "Default constructor called" << std::endl;
 }
 
 Fixed::Fixed( const int integer_number ) 
 	: fixed_point_number_( integer_number * BITS_MOVE ) {
-	std::cout << "Int constructor called" << std::endl;
 }
 
 Fixed::Fixed( const float float_pointer_number )
 	: fixed_point_number_( std::roundf(float_pointer_number * BITS_MOVE) ) {
-	std::cout << "Float constructor called" << std::endl;
 }
 
 Fixed::Fixed( const Fixed& copy ) {
-	std::cout << "Copy constructor called" << std::endl;
-
 	this->fixed_point_number_ = copy.fixed_point_number_;
 }
 
 Fixed& Fixed::operator=( const Fixed& src ) {
-	std::cout << "Copy assignment operator called" << std::endl;
-
 	if (this != &src) {
 		this->fixed_point_number_ = src.fixed_point_number_;
 	}
@@ -40,20 +33,16 @@ Fixed& Fixed::operator=( const Fixed& src ) {
 }
 
 Fixed::~Fixed() {
-	std::cout << "Destructor called" << std::endl;
 }
+
 
 // member functions
 
 int	Fixed::getRawBits( void ) const {
-	std::cout << "getRawBits member function called" << std::endl;
-
 	return (this->fixed_point_number_);	
 }
 
 void	Fixed::setRawBits( int const raw ) {
-	std::cout << "setRawBits member function called" << std::endl;
-
 	this->fixed_point_number_ = raw;
 }
 
@@ -65,7 +54,40 @@ int	Fixed::toInt( void ) const {
 	return this->fixed_point_number_ / BITS_MOVE;
 }
 
+// Comparison
+bool operator>(const Fixed& l, const Fixed& r) {
+	return l.getRawBits() > r.getRawBits();
+}
+
+bool operator<(const Fixed& l, const Fixed& r) {
+	return l.getRawBits() < r.getRawBits();
+}
+
+bool operator>=(const Fixed& l, const Fixed& r) {
+	return l.getRawBits() >= r.getRawBits();
+}
+
+bool operator<=(const Fixed& l, const Fixed& r) {
+	return l.getRawBits() <= r.getRawBits();
+}
+
+bool operator==(const Fixed& l, const Fixed& r) {
+	return l.getRawBits() == r.getRawBits();
+}
+
+bool operator!=(const Fixed& l, const Fixed& r) {
+	return l.getRawBits() != r.getRawBits();
+}
+
+// Arithmetic
+ 
+int operator int(void) {
+	return this->fixed_pointer_number_;
+}
+
 std::ostream& operator<<( std::ostream& os, const Fixed& obj ) {
 	os << obj.toFloat();
 	return os;
 }
+
+

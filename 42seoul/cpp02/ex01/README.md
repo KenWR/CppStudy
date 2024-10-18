@@ -62,9 +62,6 @@ IEEE 754 부동소수점 표현은 크게 세 부분으로 구성된다
 *곱셈 나눗셈에서는 부동 소수점이 더 효율적일 수 있다!*
 
 
-## Operator overloading
-
-### Description
 
 
 
