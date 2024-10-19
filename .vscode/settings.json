@@ -11,6 +11,7 @@
 		"chrono": "cpp",
 		"filesystem": "cpp",
 		"memory": "cpp",
-		"unordered_map": "cpp"
+		"unordered_map": "cpp",
+		"xutility": "cpp"
 	}
 }

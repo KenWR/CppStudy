@@ -55,34 +55,85 @@ int	Fixed::toInt( void ) const {
 }
 
 // Comparison
-bool operator>(const Fixed& l, const Fixed& r) {
-	return l.getRawBits() > r.getRawBits();
+bool Fixed::operator>(const Fixed& src) const {
+	return this->getRawBits() > src.getRawBits();
 }
 
-bool operator<(const Fixed& l, const Fixed& r) {
-	return l.getRawBits() < r.getRawBits();
+bool Fixed::operator<(const Fixed& src) const {
+	return this->getRawBits() < src.getRawBits();
 }
 
-bool operator>=(const Fixed& l, const Fixed& r) {
-	return l.getRawBits() >= r.getRawBits();
+bool Fixed::operator>=(const Fixed& src) const {
+	return this->getRawBits() >= src.getRawBits();
 }
 
-bool operator<=(const Fixed& l, const Fixed& r) {
-	return l.getRawBits() <= r.getRawBits();
+bool Fixed::operator<=(const Fixed& src) const {
+	return this->getRawBits() <= src.getRawBits();
 }
 
-bool operator==(const Fixed& l, const Fixed& r) {
-	return l.getRawBits() == r.getRawBits();
+bool Fixed::operator==(const Fixed& src) const {
+	return this->getRawBits() == src.getRawBits();
 }
 
-bool operator!=(const Fixed& l, const Fixed& r) {
-	return l.getRawBits() != r.getRawBits();
+bool Fixed::operator!=(const Fixed& src) const {
+	return this->getRawBits() != src.getRawBits();
 }
 
 // Arithmetic
- 
-int operator int(void) {
-	return this->fixed_pointer_number_;
+int Fixed::operator+(const Fixed& src) const {
+	return this->getRawBits() + src.getRawBits();
+}
+
+int Fixed::operator-(const Fixed& src) const {
+	return this->getRawBits() - src.getRawBits();
+}
+
+int Fixed::operator*(const Fixed& src) const {
+	return this->getRawBits() * src.getRawBits();
+}
+
+int Fixed::operator/(const Fixed& src) const {
+	return this->getRawBits() / src.getRawBits();
+}
+
+// Increment and decrement
+Fixed& Fixed::operator++() {
+	this->setRawBits(this->getRawBits() + 1);
+	return *this;
+}
+
+Fixed& Fixed::operator++(int) {
+	Fixed old = *this;
+	operator++();
+	return old;
+}
+
+Fixed& Fixed::operator--() {
+	this->setRawBits(this->getRawBits() - 1);
+}
+
+Fixed& Fixed::operator--(int) {
+	Fixed old = *this;
+	operator--();
+	return old;
+}
+
+
+// Min and Max
+static Fixed& min(Fixed& fp1, Fixed& fp2) {
+	return (fp1 < fp2) ? fp1 : fp2;
+}
+
+static const Fixed& min(const Fixed& fp1, const Fixed& fp2) {
+	return (fp1 < fp2) ? fp1 : fp2;
+}
+
+static Fixed& max(Fixed& fp1, Fixed& fp2) {
+	return (fp1 > fp2) ? fp1 : fp2;
+}
+
+static const Fixed& max(const Fixed& fp1, const Fixed& fp2) {
+	return (fp1 > fp2) ? fp1 : fp2;
 }
 
 std::ostream& operator<<( std::ostream& os, const Fixed& obj ) {

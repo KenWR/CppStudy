@@ -26,19 +26,18 @@ public:
 	int		toInt( void ) const;
 
 	// Comparison
-	bool operator>(const Fixed& l, const Fixed& r);
-	bool operator<(const Fixed& l, const Fixed& r);
-	bool operator>=(const Fixed& l, const Fixed& r);
-	bool operator<=(const Fixed& l, const Fixed& r);
-	bool operator==(const Fixed& l, const Fixed& r);
-	bool operator!=(const Fixed& l, const Fixed& r);
+	bool operator>(const Fixed& l) const;
+	bool operator<(const Fixed& l) const;
+	bool operator>=(const Fixed& l) const;
+	bool operator<=(const Fixed& l) const;
+	bool operator==(const Fixed& l) const;
+	bool operator!=(const Fixed& l) const;
 
 	// Arithmetic
-	operator int(void);
-	int operator+(const Fixed& src);
-	int operator-(const Fixed& src);
-	int operator*(const Fixed& src);
-	int operator/(const Fixed& src);
+	int operator+(const Fixed& src) const;
+	int operator-(const Fixed& src) const;
+	int operator*(const Fixed& src) const;
+	int operator/(const Fixed& src) const;
 
 	// Increment and decrement
 	Fixed& operator++();	// prefix increment
@@ -47,10 +46,12 @@ public:
 	Fixed& operator--(int);	// postfix decrement
 
 	// Min and Max
-	static int& min(int& fp1, int& fp2);
-	static int& min(const int& fp1, const int& fp2);
-	static int& max(int& fp1, int& fp2);
-	static int& max(const int& fp1, const int& fp2);
+	static int& min(Fixed& fp1, Fixed& fp2);
+	static int& min(const Fixed& fp1, const Fixed& fp2);
+	static int& max(Fixed& fp1, Fixed& fp2);
+	static int& max(const Fixed& fp1, const Fixed& fp2);
+
+	int toInt() const;
 };
 
 std::ostream& operator<<( std::ostream& os, const Fixed& obj );
