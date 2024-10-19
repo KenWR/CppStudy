@@ -1,15 +1,15 @@
-SRCS = main.cpp
-INCLUDES = 
+SRCS = main.cpp Fixed.cpp
+INCLUDES = Fixed.hpp
 OBJS = $(SRCS:.cpp=.o)
 
-NAME = 
+NAME = a.out
 CC = c++
 FLAG = -Wall -Wextra -Werror -std=c++98
 
 all : $(NAME)
 
 $(NAME) : $(OBJS) $(INCLUDES)
-	$(CC) $(FLAG) $(OBJS) -o $(NAME)
+	$(CC) -O0 $(FLAG) $(OBJS) -o $(NAME)
 
 %.o : %.cpp $(INCLUDES)
 	$(CC) $(FLAG) -c $< -o $@
