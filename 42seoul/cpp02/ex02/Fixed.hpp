@@ -34,24 +34,22 @@ public:
 	bool operator!=(const Fixed& l) const;
 
 	// Arithmetic
-	int operator+(const Fixed& src) const;
-	int operator-(const Fixed& src) const;
-	int operator*(const Fixed& src) const;
-	int operator/(const Fixed& src) const;
+	Fixed operator+(const Fixed& src) const;
+	Fixed operator-(const Fixed& src) const;
+	Fixed operator*(const Fixed& src) const;
+	Fixed operator/(const Fixed& src) const;
 
 	// Increment and decrement
 	Fixed& operator++();	// prefix increment
-	Fixed& operator++(int);	// postfix increment
+	Fixed operator++(int);	// postfix increment
 	Fixed& operator--();	// prefix decrement
-	Fixed& operator--(int);	// postfix decrement
+	Fixed operator--(int);	// postfix decrement
 
 	// Min and Max
-	static int& min(Fixed& fp1, Fixed& fp2);
-	static int& min(const Fixed& fp1, const Fixed& fp2);
-	static int& max(Fixed& fp1, Fixed& fp2);
-	static int& max(const Fixed& fp1, const Fixed& fp2);
-
-	int toInt() const;
+	static Fixed& min(Fixed& fp1, Fixed& fp2);
+	static const Fixed& min(const Fixed& fp1, const Fixed& fp2);
+	static Fixed& max(Fixed& fp1, Fixed& fp2);
+	static const Fixed& max(const Fixed& fp1, const Fixed& fp2);
 };
 
 std::ostream& operator<<( std::ostream& os, const Fixed& obj );
