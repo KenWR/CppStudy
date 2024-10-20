@@ -3,12 +3,12 @@
 
 #include <ostream>
 
-#define BITS_MOVE (1 << fractional_bits)
+#define BITS_MOVE (1 << fractional_bits_)
 
 class Fixed {
 private:
 	int	fixed_point_number_;
-	static const int fractional_bits;
+	static const int fractional_bits_;
 	
 public:
 	// orthodox canonical form

@@ -3,7 +3,7 @@
 #include <ostream>
 #include <cmath>
 
-const int Fixed::fractional_bits = 8;
+const int Fixed::fractional_bits_ = 8;
 
 // orthodox canonical form
 
