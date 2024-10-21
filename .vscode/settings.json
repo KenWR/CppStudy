@@ -63,6 +63,27 @@
 		"xloctime": "cpp",
 		"xmemory": "cpp",
 		"xstring": "cpp",
-		"xtr1common": "cpp"
+		"xtr1common": "cpp",
+		"__config": "cpp",
+		"__debug": "cpp",
+		"__errc": "cpp",
+		"__functional_base": "cpp",
+		"__locale": "cpp",
+		"__mutex_base": "cpp",
+		"__node_handle": "cpp",
+		"__nullptr": "cpp",
+		"__split_buffer": "cpp",
+		"__string": "cpp",
+		"__threading_support": "cpp",
+		"__tuple": "cpp",
+		"array": "cpp",
+		"bitset": "cpp",
+		"cstdarg": "cpp",
+		"cwctype": "cpp",
+		"mutex": "cpp",
+		"ratio": "cpp",
+		"sstream": "cpp",
+		"stack": "cpp",
+		"string_view": "cpp"
 	}
 }

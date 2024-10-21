@@ -5,23 +5,28 @@
 
 class Point {
 private:
-	Fixed x_;
-	Fixed y_;
-	Fixed z_;
+	const Fixed x_;
+	const Fixed y_;
+	const Fixed z_;
 
 public:
+	
 	Point();
-	Point::Point(Fixed& x, Fixed& y, Fixed& z);
+	Point(const Fixed& x, const Fixed& y, const Fixed& z);
 	Point( const Point& copy );
 	Point& operator=( const Point& src );
 	~Point();
 
-	Fixed getX() const;
-	Fixed getY() const;
-	Fixed getZ() const;
-	void setX( Fixed& fp );
-	void setY( Fixed& fp );
-	void setZ( Fixed& fp );
+	Point operator-( Point const p) const;
+	Point operator+( Point const p ) const;
+	Point operator*( Point const p ) const;
+	Point operator/( Point const p ) const;
+
+	const Fixed& getX() const;
+	const Fixed& getY() const;
+	const Fixed& getZ() const;
 };
+
+bool bsp( Point const a, Point const b, Point const c, Point const point);
 
 #endif

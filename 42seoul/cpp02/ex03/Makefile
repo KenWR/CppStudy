@@ -1,5 +1,5 @@
-SRCS = main.cpp Fixed.cpp
-INCLUDES = Fixed.hpp
+SRCS = main.cpp Fixed.cpp Point.cpp bsp.cpp
+INCLUDES = Fixed.hpp Point.hpp
 OBJS = $(SRCS:.cpp=.o)
 
 NAME = a.out
