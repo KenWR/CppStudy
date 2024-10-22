@@ -20,7 +20,7 @@ Fixed::Fixed( const int integer_number )
 }
 
 Fixed::Fixed( const float float_pointer_number )
-	: fixed_point_number_( std::roundf(float_pointer_number * BITS_MOVE) ) {
+	: fixed_point_number_( roundf(float_pointer_number * BITS_MOVE) ) {
 	std::cout << "Float constructor called" << std::endl;
 }
 
