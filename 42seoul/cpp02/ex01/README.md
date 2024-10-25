@@ -1,10 +1,32 @@
-# EX01
+## INDEX  
 
-## 부동/고정 소수점
+- [CPP\_02: EX\_00](#cpp_02-ex_00)
+	- [Description](#description)
+		- [Orthodox Canonical Form](#orthodox-canonical-form)
+	- [Rule 3](#rule-3)
+		- [Description](#description-1)
+		- [what about non-copyable resources](#what-about-non-copyable-resources)
+	- [Rule 5](#rule-5)
+		- [Description](#description-2)
+		- [E.G. feat.SEMANTICS](#eg-featsemantics)
+	- [Rule 0](#rule-0)
+		- [Description](#description-3)
+		- [소유권?](#소유권)
+		- [출처](#출처)
 
-### 부동 소수점
+---
 
-#### Description
+# CPP_02: EX_01
+
+## Description
+
+8비트를 분수 비트로 하는 고정 소수점을 구현하라   
+
+## Concepts
+
+### 부동/고정 소수점
+
+#### 부동 소수점
 
 **부동소수점(浮動小數點, floating point)**   
 
@@ -23,7 +45,7 @@ IEEE 754 부동소수점 표현은 크게 세 부분으로 구성된다
 
 ![IEEE-754](../../../images/IEEE-754.png)   
 
-#### 방식
+##### 방식
 
 **−118.625**를 **IEEE 754(32bit 단정밀도)** 형식으로 숫자를 표현하는 과정은 다음과 같다     
 
@@ -47,9 +69,7 @@ IEEE 754 부동소수점 표현은 크게 세 부분으로 구성된다
 따라서, −118.625를 IEEE 754 32비트 형식으로 표현하면 1 10000101 11011010100000000000000이 된다   
 
 
-### 고정 소수점
-
-#### Description
+#### 고정 소수점
 
 **고정소수점(固定小數點, Fixed-point arithmetic)**   
 
@@ -60,9 +80,4 @@ IEEE 754 부동소수점 표현은 크게 세 부분으로 구성된다
 이는 숫자를 표현하는데에 있어 일정한 유효숫자를 보장하며 부동소수점보다는 정밀하지 않으나 덧셈 뺄셈에서 높은 속도를 가진다   
 
 *곱셈 나눗셈에서는 부동 소수점이 더 효율적일 수 있다!*
-
-
-
-
-
 

@@ -1,10 +1,27 @@
-### implement
+## INDEX
+
+- [CPP\_01: EX\_05](#cpp_01-ex_05)
+  - [Description](#description)
+  - [Implement](#implement)
+  - [Concepts](#concepts)
+    - [pointers to members](#pointers-to-members)
+
+---
+# CPP_01: EX_05
+
+## Description
+
+각 단계에 따른 출력을 구현하는 것이다   
+
+## Implement
 
 if else문을 최소한으로 사용하면서 pointers to members를 사용하라고 하였다  
 
 코드에서 `typedef void (Harl::*pointer_to_function)(void);`를 사용하여 멤버 함수 포인터 타입을 정의했다   
 
 이를 통해 동일한 형식을 가지는 `debug`, `info`, `warning`, `error` 네가지 멤버 함수를 하나의 배열로 관리하여 입력받은 `level`값에 따라 적절한 함수를 동적으로 호출할 수 있게 하였다
+
+## Concepts
 
 ### pointers to members
 

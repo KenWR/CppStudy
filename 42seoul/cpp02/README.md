@@ -2,21 +2,11 @@
 
 - [CPP 02](#cpp-02)
 	- [Description](#description)
-	- [Concepts](#concepts)
-	- [Implement](#implement)
 
 ---
 # CPP 02
 
 ## Description
 
-## Concepts
-
-## Implement
-
-- Ad-hoc polymorphism   
-- operator overloading   
-- Orthodox Canonical class form   
-
-
+Ad-hoc polymorphism(임시 다형성), 연산자 오버로딩, Orthodox Canonical class form 에 대해 공부한다   
 

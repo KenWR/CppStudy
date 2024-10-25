@@ -1,9 +1,8 @@
 ## INDEX  
 
-[EX00](#ex00)
-- [GOAL](#goal)
-	- [Orthodox Canonical Form](#orthodox-canonical-form)
-		- [Description](#description)
+- [CPP\_02: EX\_00](#cpp_02-ex_00)
+	- [Description](#description)
+		- [Orthodox Canonical Form](#orthodox-canonical-form)
 	- [Rule 3](#rule-3)
 		- [Description](#description-1)
 		- [what about non-copyable resources](#what-about-non-copyable-resources)
@@ -17,11 +16,13 @@
 
 ---
 
-# GOAL
+# CPP_02: EX_00
 
-## Orthodox Canonical Form
+## Description
 
-### Description
+Orthodox Canonical Form 을 작성하는 법을 배운다   
+
+### Orthodox Canonical Form
 
 **자원 관리를 안전하고 효율적으로 하기 위한 C++ 설계 철학**
 

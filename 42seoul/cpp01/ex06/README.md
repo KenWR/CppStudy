@@ -1,3 +1,79 @@
+## INDEX
+
+- [CPP\_01: EX\_04](#cpp_01-ex_04)
+	- [Description](#description)
+	- [Implement](#implement)
+	- [Concepts](#concepts)
+		- [switch statement](#switch-statement)
+
+---
+# CPP_01: EX_04
+
+## Description
+
+[이전 과제](../ex05/)에서 단계별 선택을 switch case문으로 구현하라
+
+## Implement
+
+```c++
+void Harl::complain( std::string level ) {
+	pointer_to_function funcs[LEVEL_NUM] = { &Harl::debug, &Harl::info, &Harl::warning, &Harl::error };
+
+	int i = levelToInt( level );
+	if (i < LEVEL_NUM) {
+		(this->*(funcs[i]))();
+	} else {
+		std::cout << "Invalid level" << std::endl;
+	}
+}
+```
+
+에서
+
+```c++
+int Harl::levelToInt( std::string level ) {
+	const std::string levels[LEVEL_NUM] = { "DEBUG", "INFO", "WARNING", "ERROR" };
+	
+	int i = 0;
+	while (i < LEVEL_NUM) {
+		if (level == levels[i])
+			break;
+		++i;
+	}
+	return (i);
+}
+
+void Harl::complain( std::string level ) {
+	int i = levelToInt( level );
+	switch (i) {
+		default:
+			std::cout << "[ Probably complaining about insignificant problems ]" << std::endl;
+			break;
+		case 0:
+			this->debug();
+			__attribute__((fallthrough));
+		case 1:
+			this->info();
+			__attribute__((fallthrough));
+		case 2:
+			this->warning();
+			__attribute__((fallthrough));
+		case 3:
+			this->error();
+			break;
+	}
+}
+```
+
+으로 구현하였다   
+
+여기에서 **__attribute__((fallthrough));** 에 대해 부연설명을 하자면 일반적으로 case문에 **break;**를 넣지 않으면 그 다음 케이스로 넘어가게 된다 하지만 이를 컴파일러는 위험하다고 판단하여 에러를 내뱉는데 이를 막고자 컴파일러에게 fall-through를 의도하여 사용했다는 것을 알려주는 것이다   
+
+C++17 부터 [[fallthrough]]라는 형식으로 바뀌었다   
+
+
+## Concepts
+
 ### switch statement
 
 **Syntax**   
