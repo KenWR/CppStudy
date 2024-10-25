@@ -19,7 +19,7 @@ public:
 	void				SetSrc( const std::string& str );
 	void				SetDest( const std::string& str );
 
-	// logit functions
+	// logic functions
 	void srcToDest( std::string& str );
 
 	// special member functions
