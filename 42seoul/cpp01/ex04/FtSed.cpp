@@ -24,7 +24,10 @@ void FtSed::srcToDest( std::string& str ) {
 		std::string lstr = str.substr(0, pos);
 		std::string rstr = str.substr(pos + this->src_length_, str.length());
 		str = lstr + this->dest_ + rstr;
-		pos = str.find(this->src_);
+		if (rstr.find(this->src_) != std::string::npos)
+			pos = lstr.size() + this->dest_.size() + rstr.find(this->src_);
+		else
+			pos = std::string::npos;
 	}
 }
 
