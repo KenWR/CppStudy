@@ -1,11 +1,14 @@
 ## INDEX
 
-- [GOAL](#goal)
-- [IMPLEMENT](#implement)
+- [CPP\_00: EX\_00](#cpp_00-ex_00)
+	- [Description](#description)
+	- [Implement](#implement)
 		- [static\_cast 를 사용해야하는이유](#static_cast-를-사용해야하는이유)
 ---   
 
-# GOAL
+# CPP_00: EX_00
+
+## Description
 
 메가폰 서브젝트
 
@@ -35,7 +38,7 @@ $>
 아무것도 입력 받지 않았을 때, "* LOUD AND UNBEARABLE FEEDBACK NOISE *" 를 stdout으로 출력해야한다
 
 
-# IMPLEMENT
+## Implement
 
 소문자로 들어온 charactor를 <cctype> 헤더에 선언된 toupper() 함수를 사용하여 대문자로 바꿔 주었고
 

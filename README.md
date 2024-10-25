@@ -1,4 +1,12 @@
-- [Other C++ modules:](#other-c-modules)
+## INDEX
+
+- [Descripion](#descripion)
+		- [Other C++ modules:](#other-c-modules)
+---
+
+# Descripion
+
+CPP를 마스터 하기 위한 공부를 하며 공부한 내용을 정리해 놓기 위한 공간   
 
 ### Other C++ modules:
 

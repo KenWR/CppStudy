@@ -1,6 +1,25 @@
-### Memory allocation
+## INDEX
 
-C에서는 `alloc` 과 `free` 함수를 통한 메모리 할당, 해제가 있었다면 C++에서는 `new`, `delete` 연산자를 통한 할당, 해제가 존재한다
+- [CPP 01](#cpp-01)
+	- [Description](#description)
+	- [Concepts](#concepts)
+		- [Memory allocation](#memory-allocation)
+			- [할당](#할당)
+			- [해제](#해제)
+		- [references](#references)
+		- [getter\&setter 작성법](#gettersetter-작성법)
+		- [왜 getter\&setter를 사용할까?](#왜-gettersetter를-사용할까)
+
+---
+# CPP 01
+
+## Description
+
+이번 과제에서는 메모리 할당 방식과 Pointer to members라는 멤버객체에 대한 포인터를 선언하는 방식, 레퍼런스(&), switch문에 대해 배운다
+
+## Concepts
+
+
 
 #### 할당
 

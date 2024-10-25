@@ -1,20 +1,23 @@
+## INDEX  
+
 [EX00](#ex00)
-- [Orthodox Canonical Form](#orthodox-canonical-form)
-	- [Description](#description)
-- [Rule 3](#rule-3)
-	- [Description](#description-1)
-	- [what about non-copyable resources](#what-about-non-copyable-resources)
-- [Rule 5](#rule-5)
-	- [Description](#description-2)
-	- [E.G. feat.SEMANTICS](#eg-featsemantics)
-- [Rule 0](#rule-0)
-	- [Description](#description-3)
-	- [소유권?](#소유권)
-- [출처](#출처)
+- [GOAL](#goal)
+	- [Orthodox Canonical Form](#orthodox-canonical-form)
+		- [Description](#description)
+	- [Rule 3](#rule-3)
+		- [Description](#description-1)
+		- [what about non-copyable resources](#what-about-non-copyable-resources)
+	- [Rule 5](#rule-5)
+		- [Description](#description-2)
+		- [E.G. feat.SEMANTICS](#eg-featsemantics)
+	- [Rule 0](#rule-0)
+		- [Description](#description-3)
+		- [소유권?](#소유권)
+		- [출처](#출처)
 
 ---
 
-# EX00 
+# GOAL
 
 ## Orthodox Canonical Form
 

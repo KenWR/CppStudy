@@ -1,21 +1,28 @@
 ## INDEX  
 
-- [GOAL](#goal)   
-		- [Namespaces](#namespaces)   
-		- [classes](#classes)   
-		- [member functions](#member-functions)   
-		- [stdio streams](#stdio-streams)   
-		- [initialization lists](#initialization-lists)   
-		- [static](#static)   
-		- [const](#const)   
+- [CPP\_00](#cpp_00)
+	- [Description](#description)
+	- [Concepts](#concepts)
+		- [Namespaces](#namespaces)
+		- [classes](#classes)
+			- [접근제어자](#접근제어자)
+		- [member functions](#member-functions)
+		- [stdio streams](#stdio-streams)
+		- [initialization lists](#initialization-lists)
+		- [static](#static)
+		- [const](#const)
 ---
 
-# GOAL
+# CPP_00
+
+## Description
 
 C++ - Module 00   
 Namespaces, classes, member functions, stdio streams, initialization lists, static, const, and some other basic stuf
 
 C++ 모듈 00의 목표는 C++의 기본을 알아보는 시간이다
+
+## Concepts
 
 ### Namespaces
 

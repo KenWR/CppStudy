@@ -1,13 +1,16 @@
 ## INDEX
-- [GOAL](#goal)
-- [IMPLEMENT](#implement)
-- [P.S.](#ps)
+- [CPP\_00: EX\_01](#cpp_00-ex_01)
+  - [Description](#description)
+  - [Implement](#implement)
+  - [P.S.](#ps)
     - [cin이 eof를 만나게 된다면 feat. getline()](#cin이-eof를-만나게-된다면-feat-getline)
     - [cin과 getline의 만남](#cin과-getline의-만남)
 
 ---
 
-# GOAL
+# CPP_00: EX_01
+
+## Description
 
 두개의 클래스를 구현하라
 
@@ -96,7 +99,7 @@ Give a relevant name to your executable.
 
 
 
-# IMPLEMENT
+## Implement
 
 연락처 정보를 가지고 있는 Contact 클래스, Contact 클래스를 최대 8개까지 가지고 있는 PhoneBook 클래스를 구현해야 한다
 
@@ -114,7 +117,7 @@ SEARCH 입력시 나오는 출력문을 `<iomanip>` 헤더를 사용해 출력�
 
 기본적인 stream과 클래스 선언 및 구조를 알아갈 수 있는 과제였다
 
-# P.S.
+## P.S.
 
 ### cin이 eof를 만나게 된다면 feat. getline()
 

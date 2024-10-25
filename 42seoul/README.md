@@ -1,14 +1,13 @@
 ## INDEX   
-- [INDEX](#index)
-	- [GOAL](#goal)
-	- [RULES](#rules)
-	- [ALLOWED \& FORBIDDEN](#allowed--forbidden)
-	- [MODULE](#module)
-	- [A FEW DESIGN REQUIREMENTS](#a-few-design-requirements)
+- [Description](#description)
+		- [RULES](#rules)
+		- [ALLOWED \& FORBIDDEN](#allowed--forbidden)
+		- [MODULE](#module)
+		- [A FEW DESIGN REQUIREMENTS](#a-few-design-requirements)
 
 ---
 
-### GOAL
+# Description
 
 CPP 과제
 

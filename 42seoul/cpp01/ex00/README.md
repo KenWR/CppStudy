@@ -1,3 +1,27 @@
+## INDEX
+
+- [CPP\_01: EX\_00](#cpp_01-ex_00)
+	- [Description](#description)
+	- [Implement](#implement)
+	- [Concepts](#concepts)
+		- [Memory allocation](#memory-allocation)
+		- [heap 그리고 stack](#heap-그리고-stack)
+
+---
+# CPP_01: EX_00
+
+## Description
+
+
+
+## Implement
+
+## Concepts
+
+### Memory allocation
+
+C에서는 `alloc` 과 `free` 함수를 통한 메모리 할당, 해제가 있었다면 C++에서는 `new`, `delete` 연산자를 통한 할당, 해제가 존재한다
+
 ### heap 그리고 stack
 
 heap은 `new`로 할당하며 `delete`로 해제해야 한다

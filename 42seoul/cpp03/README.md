@@ -1,3 +1,19 @@
+## INDEX
+
+- [CPP 03](#cpp-03)
+	- [Description](#description)
+	- [Concepts](#concepts)
+	- [Implement](#implement)
+
+---
+# CPP 03
+
+## Description
+
+## Concepts
+
+## Implement
+
 상속에서 파생 클래스의 생성자가 먼저 호출되나 파생 클래스가 기본 클래스의  생성자를  호출하게되어 기본 클래스의 생성자가 먼저 동작하고 그 이후에 파생 클래스의 생성자가 동작한다        
 
 생성자의 호출순서와 실행순서는 일치하지 않는다   
