@@ -10,6 +10,8 @@
 
 ## Description
 
+Inheritance, 상속을 다루어 보자
+
 ## Concepts
 
 ## Implement
