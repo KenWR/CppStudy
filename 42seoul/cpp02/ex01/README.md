@@ -1,18 +1,12 @@
 ## INDEX  
 
-- [CPP\_02: EX\_00](#cpp_02-ex_00)
+- [CPP\_02: EX\_01](#cpp_02-ex_01)
 	- [Description](#description)
-		- [Orthodox Canonical Form](#orthodox-canonical-form)
-	- [Rule 3](#rule-3)
-		- [Description](#description-1)
-		- [what about non-copyable resources](#what-about-non-copyable-resources)
-	- [Rule 5](#rule-5)
-		- [Description](#description-2)
-		- [E.G. feat.SEMANTICS](#eg-featsemantics)
-	- [Rule 0](#rule-0)
-		- [Description](#description-3)
-		- [소유권?](#소유권)
-		- [출처](#출처)
+	- [Concepts](#concepts)
+		- [부동/고정 소수점](#부동고정-소수점)
+			- [부동 소수점](#부동-소수점)
+				- [방식](#방식)
+			- [고정 소수점](#고정-소수점)
 
 ---
 
