@@ -5,6 +5,7 @@
   - [Implement](#implement)
   - [Concepts](#concepts)
     - [pointers to members](#pointers-to-members)
+      - [그래서 이건 어디에 사용되나?](#그래서-이건-어디에-사용되나)
 
 ---
 # CPP_01: EX_05
@@ -53,3 +54,53 @@ S C::* D;	// 멤버 포인터 선언
 
 이에따른 사용법과 예제로는 [data member](../test/PointersToMembersData.cpp)와 [function member](../test/PointersToMembersFunction.cpp)를 통해 확인할 수 있다   
 
+#### 그래서 이건 어디에 사용되나?
+
+일반적으로 함수 포인터는 정적 함수에만 사용이 가능하다는 한계가 있다   
+왜 이런 한계가 있느냐고 묻는다면 일반적으로 멤버 함수는 this 포인터가 필요하기 때문에 자신의 객체를 숨겨진 인자로서 전달받아야 하는데 함수 포인터로는 코드의 시작 주소만 저장하고 이러한 숨겨진 인자를 처리할 방법이 없기 때문에 객체에 묶여있지 않고 this 포인터가 필요 없는 정적 멤버 함수에만 사용이 가능한 것이다   
+
+그렇기에 해당 한계를 극복하기 위해 pointers to members라는 추가적인 기능을 제공한다   
+
+이렇게 각 객체의 멤버 함수들을 포인터 함수로 사용하여 다른 객체로부터 호출이 되거나 callback 함수가 특정 객체의 멤버 함수를 호출 할 수 있는 등의 유연성을 제공할 수 있게 되었다   
+
+**E.G.**
+```c++
+#include <iostream>
+
+class MyClass {
+public:
+	static void memberStaticFunction() {
+		std::cout << "Member static function" << std::endl;
+	}
+
+  void memberFunction() {
+    std::cout << "Member function" << std::endl;
+  }
+};
+
+int main() {
+  MyClass obj;
+
+  // 멤버 함수는 this 포인터를 필요로하기에 숨겨진 인자로 자신의 객체를 전달 받는다
+  obj.memberFunction(); // == memberFunction(&obj);
+
+	// 일반 멤버 함수 포인터로 정적 멤버 함수 선언 및 초기화
+	void (*ptr1)() = &MyClass::memberStaticFunction;
+	// 일반 멤버 함수 포인터로 멤버 함수 선언 및 초기화 불가능
+	// void (*ptr2)() = &MyClass::memberFunction;
+
+
+  // pointer to member function으로 정적 멤버 함수 선언 및 초기화 불가능
+	// void (MyClass::*ptr3)() = &MyClass::memberStaticFunction;
+	// pointer to member function으로 정적 멤버 함수 선언 및 초기화
+  void (MyClass::*ptr4)() = &MyClass::memberFunction;
+
+  // 멤버 함수 호출 (객체와 함께 호출해야 함)
+	ptr1();	// 출력: Member static function
+  (obj.*ptr4)();	// 출력: Member function
+
+    return 0;
+}
+```
+
+사실 위의 내용말고 추가적으로 사용하거나 다른 이유가 있을 수 있지만 직접 사용을 해봐야 정확하게 이해할 수 있을 것 같다   
