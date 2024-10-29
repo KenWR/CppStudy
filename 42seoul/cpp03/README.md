@@ -4,6 +4,20 @@
 	- [Description](#description)
 	- [Concepts](#concepts)
 	- [Implement](#implement)
+		- [Inheritance](#inheritance)
+		- [protected](#protected)
+		- [override](#override)
+		- [ia a / has a](#ia-a--has-a)
+		- [virtual](#virtual)
+		- [polymorphism](#polymorphism)
+		- [VTable](#vtable)
+		- [Pure virtual function](#pure-virtual-function)
+		- [Abstract class](#abstract-class)
+		- [Multiple inheritance](#multiple-inheritance)
+			- [다이아몬드 상속](#다이아몬드-상속)
+			- [bridge pattern](#bridge-pattern)
+			- [nested generalization](#nested-generalization)
+- [참고자료](#참고자료)
 
 ---
 # CPP 03
@@ -51,10 +65,43 @@ Inheritance, 상속을 다루어 보자
 A* pData = new B;  여기서 소멸자 호출하면 릭이 남 왜냐하면 A소멸자는 호출되는데 B 소멸자는 호출이 안되어서   
 그래서 virtual키워드를 넣어줘야 함   
 
+### Inheritance
+
+### protected
+
+### override
+
+### ia a / has a
+
+### virtual
+
+소멸자 처리
+
+### polymorphism
+
+### VTable
 
 
 
+### Pure virtual function
 
+
+### Abstract class
+
+
+### Multiple inheritance
+
+#### 다이아몬드 상속
+
+#### bridge pattern
+
+#### nested generalization
+
+# 참고자료
+
+[다중상속의 사용](https://isocpp.org/wiki/faq/ multiple-inheritance#virtual-inheritance-where)   
+
+[모두의 코드](https://modoocode.com/category/C++)   
 
 
 
