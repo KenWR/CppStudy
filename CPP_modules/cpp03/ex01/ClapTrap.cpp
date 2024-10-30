@@ -10,6 +10,14 @@ ClapTrap::ClapTrap(const std::string& name)
 		std::cout << "\033[33mClapTrap " << this->name_ << " Constructor called\033[0m" << std::endl;
 }
 
+ClapTrap::ClapTrap(const std::string& name, unsigned int hit_points, unsigned int energy_points, unsigned int attack_damage) 
+	: name_(name),
+	hit_points_(hit_points),
+	energy_points_(energy_points),
+	attack_damage_(attack_damage) {
+		std::cout << "\033[33mClapTrap " << this->name_ << " Parameter constructor called\033[0m" << std::endl;
+}
+
 ClapTrap::ClapTrap(const ClapTrap& copy)
 	: name_(copy.name_), 
 	hit_points_(copy.hit_points_), 
