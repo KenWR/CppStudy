@@ -4,6 +4,7 @@
 	- [Description](#description)
 	- [Concepts](#concepts)
 	- [Implement](#implement)
+- [참고자료](#참고자료)
 
 ---
 # CPP 03: EX_01
@@ -13,3 +14,8 @@
 ## Concepts
 
 ## Implement
+
+
+# 참고자료
+
+[상속 숨기기](https://www.learncpp.com/cpp-tutorial/hiding-inherited-functionality/)
