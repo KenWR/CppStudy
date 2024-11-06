@@ -11,8 +11,8 @@
 			- [ia a, has a](#ia-a-has-a)
 			- [상속의 생성자, 소멸자 호출 순서](#상속의-생성자-소멸자-호출-순서)
 				- [상속의 초기화](#상속의-초기화)
-		- [Redefining behaviors](#redefining-behaviors)
 		- [Name hiding](#name-hiding)
+			- [derived 클래스에서의 overload](#derived-클래스에서의-overload)
 		- [Multiple inheritance](#multiple-inheritance)
 			- [다이아몬드 상속](#다이아몬드-상속)
 			- [bridge pattern](#bridge-pattern)
@@ -325,7 +325,7 @@ class Derived {
 
 이는 const 키워드와 reference 타입의 경우에는 생성과 동시에 초기화가 이루어져야 하므로 해당 변수와 동일한 클래스 내에 있는 초기화 목록을 사용하는 생성자만 사용이 가능하기 때문이다    
 
-### Redefining behaviors
+### Name hiding
 
 Derived 클래스 객체가 멤버 함수를 호출하게되면 컴파일러는 객체의 런타임 타입에 따라 Derived 클래스 내부에서 먼저 일치하는 함수를 찾고 일치하는 함수가 없다면 상속 체인을 타고 올라가면서 Base 클래스로부터 일치하는 함수를 찾는다   
 
@@ -337,14 +337,14 @@ Derived 클래스 객체가 멤버 함수를 호출하게되면 컴파일러는 
 
 class Base {
 public:
-    Base();
+    Base() {};
 
     void identify() const { std::cout << "Base::identify()" << std::endl; }
 };
 
 class Derived: public Base {
 public:
-    Derived();
+    Derived() {};
 
     void identify() const { std::cout << "Derived::identify()" << std::endl; }
 };
@@ -359,13 +359,41 @@ int main()
 }
 ```
 
-Adding to existing functionality
+이는 다른말로 `Derived::identify()` 가 `Base::identify()` 를 숨겼다(hiding)! 라고 한다   
 
-Sometimes we don’t want to completely replace a base class function, but instead want to add additional functionality to it when called with a derived object. In the above example, note that Derived::identify() completely hides Base::identify()! This may not be what we want. It is possible to have our derived function call the base version of the function of the same name (in order to reuse code) and then add additional functionality to it.
+만약 Base의 `identify()`를 derived에서 호출하고 싶다면 `Base::identify();` 를 derived 내부에서 Base의 `identify()`를 호출할 수 있다
 
-To have a derived function call a base function of the same name, simply do a normal function call, but prefix the function with the scope qualifier of the base class. For example:
+**E.G.**
+```c++
+class Derived: public Base {
+public:
+    Derived() {};
 
-### Name hiding
+    void identify() const { 
+		Base::identify(); // "Base::identify()"
+		std::cout << "Derived::identify()" << std::endl; 
+	}
+};
+```
+
+Base의 friend 함수의 경우에는 실제로 Base 클래스의 일부가 아니기 때문에 `::` 범위 지정 연산자를 사용하는 것이 불가능 하다   
+이는 `static_cast`를 통해 쉽게 해결이 가능하다   
+
+**E.G.**
+```c++
+class Derived: public Base {
+public:
+    Derived() {};
+
+    void identify() const { 
+		static_cast<Base const&>(*this).identify();
+		std::cout << "Derived::identify()" << std::endl; 
+	}
+};
+```
+
+#### derived 클래스에서의 overload
+
 
 
 ### Multiple inheritance
