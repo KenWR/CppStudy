@@ -3,7 +3,8 @@
 
 #include <string>
 
-class ClapTrap {
+class ClapTrap 
+{
 private:
 	std::string 	name_;
 	unsigned int	hit_points_;	// represent the health of the ClapTrap

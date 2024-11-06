@@ -1,7 +1,8 @@
 #include "ClapTrap.hpp"
 #include "ScavTrap.hpp"
 
-int main(void) {
+int main(void) 
+{
 	ClapTrap A("A");
 	ScavTrap B("B");
 

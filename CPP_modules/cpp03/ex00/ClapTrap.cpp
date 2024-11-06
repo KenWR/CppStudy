@@ -6,20 +6,26 @@ ClapTrap::ClapTrap(const std::string& name)
 	: name_(name), 
 	hit_points_(10), 
 	energy_points_(10), 
-	attack_damage_(0) {
-		std::cout << "\033[33mClapTrap " << this->name_ << " Constructor called\033[0m" << std::endl;
+	attack_damage_(0) 
+{
+	std::cout << "\033[33mClapTrap " << this->name_ 
+		<< " Constructor works done\033[0m" << std::endl;
 }
 
 ClapTrap::ClapTrap(const ClapTrap& copy)
 	: name_(copy.name_), 
 	hit_points_(copy.hit_points_), 
 	energy_points_(copy.energy_points_),
-	attack_damage_(copy.attack_damage_) {
-		std::cout << "\033[33mClapTrap " << this->name_ << " Copy constructor called\033[0m" << std::endl;
+	attack_damage_(copy.attack_damage_) 
+{
+	std::cout << "\033[33mClapTrap " << this->name_ 
+		<< " Copy constructor works done\033[0m" << std::endl;
 }
 
-ClapTrap& ClapTrap::operator=(const ClapTrap& src) {
-	std::cout << "\033[33mClapTrap " << this->name_ << " Align operator called\033[0m" << std::endl;
+ClapTrap& ClapTrap::operator=(const ClapTrap& src) 
+{
+	std::cout << "\033[33mClapTrap " << this->name_ 
+		<< " Align operator works done\033[0m" << std::endl;
 
 	if (this == &src) return *this;
 
@@ -31,11 +37,13 @@ ClapTrap& ClapTrap::operator=(const ClapTrap& src) {
 	return *this;
 }
 
-ClapTrap::~ClapTrap() {
-	std::cout << "\033[33mClapTrap " << this->name_ << " Destructor called\033[0m" << std::endl;
+ClapTrap::~ClapTrap() 
+{
+	std::cout << "\033[33mClapTrap " << this->name_ << " Destructor works done\033[0m" << std::endl;
 }
 
-void	ClapTrap::attack(const std::string& target) {
+void	ClapTrap::attack(const std::string& target) 
+{
 	if (this->hit_points_ == 0) {
 		printNotWorking(this->name_);
 		return;
@@ -49,7 +57,8 @@ void	ClapTrap::attack(const std::string& target) {
 	this->energy_points_--;
 }
 
-void	ClapTrap::takeDamage(unsigned int amount) {
+void	ClapTrap::takeDamage(unsigned int amount) 
+{
 	if (this->hit_points_ == 0) {
 		printTakeDamage(this->name_, amount);
 		return;
@@ -65,7 +74,8 @@ void	ClapTrap::takeDamage(unsigned int amount) {
 	this->hit_points_ -= amount;
 }
 
-void	ClapTrap::beRepaired(unsigned int amount) {
+void	ClapTrap::beRepaired(unsigned int amount) 
+{
 	if (this->hit_points_ == 0) {
 		printNotWorking(this->name_);
 		return;
@@ -86,29 +96,35 @@ void	ClapTrap::beRepaired(unsigned int amount) {
 	this->hit_points_ += amount;
 }
 
-void ClapTrap::printAttack(const std::string& name, const std::string& target, unsigned int damage) {
+void ClapTrap::printAttack(const std::string& name, const std::string& target, unsigned int damage) 
+{
 	std::cout << "ClapTrap " << (name) << " attacks " << (target) \
               << ", causing " << (damage) << " points of damage!" << std::endl;
 }
 
-void ClapTrap::printTakeDamage(const std::string& name, unsigned int damage) {
+void ClapTrap::printTakeDamage(const std::string& name, unsigned int damage) 
+{
 	std::cout << "ClapTrap " << (name) << " take " << (damage) \
 			  << " points of damage!" << std::endl;}
 
-void ClapTrap::printBeRepaired(const std::string& name, unsigned int damage) {
+void ClapTrap::printBeRepaired(const std::string& name, unsigned int damage) 
+{
 	std::cout << "ClapTrap " << (name) << " is repaired " << (damage) \
 			  << " points of durability!" << std::endl;
 }
 
-void ClapTrap::printNeutralized(const std::string& name) {
+void ClapTrap::printNeutralized(const std::string& name) 
+{
 	std::cout << "ClapTrap " << (name) << " is neutralized!" << std::endl;
 }
 
-void ClapTrap::printNotWorking(const std::string& name) {
+void ClapTrap::printNotWorking(const std::string& name) 
+{
 	std::cout << "ClapTrap " << (name) << " is not working..." << std::endl;
 }
 
-void ClapTrap::printNotEnoughEnergy(const std::string& name) {
+void ClapTrap::printNotEnoughEnergy(const std::string& name) 
+{
 	std::cout << "ClapTrap " << (name) << " do not have enough energy" << std::endl;
 }
 

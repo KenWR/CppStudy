@@ -3,7 +3,8 @@
 
 #include <string>
 
-class ClapTrap {
+class ClapTrap 
+{
 protected:
 	std::string 	name_;
 	unsigned int	hit_points_;	// represent the health of the ClapTrap
@@ -17,7 +18,7 @@ public:
 	ClapTrap(const std::string& name, unsigned int hit_points, unsigned int energy_points, unsigned int attack_damage);
 	ClapTrap(const ClapTrap& copy);
 	ClapTrap& operator=(const ClapTrap& src);
-	~ClapTrap();
+	virtual ~ClapTrap();
 
 	void attack(const std::string& target);
 	void takeDamage(unsigned int amount);
