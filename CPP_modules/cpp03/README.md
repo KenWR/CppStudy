@@ -12,12 +12,13 @@
 			- [상속의 생성자, 소멸자 호출 순서](#상속의-생성자-소멸자-호출-순서)
 				- [상속의 초기화](#상속의-초기화)
 		- [Name hiding](#name-hiding)
-			- [derived 클래스에서의 overload](#derived-클래스에서의-overload)
+			- [컴파일러는 overload된 함수들은 어떻게 찾을까?](#컴파일러는-overload된-함수들은-어떻게-찾을까)
+			- [Hiding inherited functionality](#hiding-inherited-functionality)
 		- [Multiple inheritance](#multiple-inheritance)
+			- [Mixin](#mixin)
 			- [다이아몬드 상속](#다이아몬드-상속)
 			- [bridge pattern](#bridge-pattern)
 			- [nested generalization](#nested-generalization)
-- [참고자료](#참고자료)
 
 ---
 # CPP 03
@@ -392,23 +393,201 @@ public:
 };
 ```
 
-#### derived 클래스에서의 overload
+#### 컴파일러는 overload된 함수들은 어떻게 찾을까?
 
+Derived 클래스에 overload된 함수가 존재한다면 그 함수의 원형(매개변수가 일치하는)이 Base에 존재하더라도 Derived의 overload 함수가 호출된다   
 
+이는 다음 예시를 보면 된다   
+
+**E.G.**
+```c++
+#include <iostream>
+
+class Base {
+public:
+	void print(int) { std::cout << "Base::print(int)" << std::endl; }
+	void print(double) { std::cout << "Base::print(double)" << std::endl; }
+	void print(int, double) { std::cout << "Base::print(int, double)" << std::endl; }
+};
+
+class Derived: public Base {
+public:
+	void print(double) { std::cout << "Derived::print(double)" << std::endl; }
+};
+
+int main(void) {
+	Derived d;
+	d.print(5); // "Base::print(double)"
+	// d.print(5, 5.0); // it doesn't work
+}
+```
+
+컴파일러는 Derived에서 이름과 일치하는 함수들을 찾았으므로 더이상 추가로 탐색하지 않는다   
+Derived의 print가 Base의 모든 print 함수들을 숨기는 것이다   
+
+여기서 문제가 생기게 된다   
+Base에 overload된 함수를 하나만 바꾸려면 모든 함수들도 새로 redefine을 해야 한다는 것이다   
+이에 대한 해결책으로는 `using` 키워드를 사용하는 것이다   
+
+**E.G.**
+```c++
+#include <iostream>
+
+class Base {
+public:
+	void print(int) { std::cout << "Base::print(int)" << std::endl; }
+	void print(double) { std::cout << "Base::print(double)" << std::endl; }
+	void print(int, double) { std::cout << "Base::print(int, double)" << std::endl; }
+};
+
+class Derived: public Base {
+public:
+	using Base::print; // using using keywords
+	void print(double) { std::cout << "Derived::print(double)" << std::endl; }
+};
+
+int main(void) {
+	Derived d;
+	d.print(5); // "Base::print(int)"
+	d.print(5.0); // "Derived::print(double)"
+	d.print(5, 5.0); // now, it works! "
+}
+```
+
+#### Hiding inherited functionality
+
+이전의 `using` 키워드를 통해 Base의 print 함수들을 Derived의 print 함수가 더이상 숨기지 않게 하였다   
+using 키워드를 이용해 Base의 public 기능들을 Derived의 private, protected 접근 제어자로 숨기면 어떻게 될까?   
+
+접근하는 주체에 따라 달라진다   
+Base로 접근하게 되면 컴파일러는 Base 클래스 내부에서 탐색을하기 때문에 접근이 가능하나, Derived로의 접근은 접근 제어자로 막혀 있어 접근하지 못한다   
+
+**E.G.**
+```c++
+#include <iostream>
+
+class Base {
+public:
+	int m_value;
+
+	Base(int value) { m_value = value; }
+};
+
+class Derived : public Base {
+private:
+	using Base::m_value;
+
+public:
+	Derived(int value) : Base(value) {}
+};
+
+int main(void) {
+	Derived derived(7);
+	// std::cout << derived.m_value << std::endl; // m_value is private in Derived
+	
+	// upcasting is fine
+	std::cout << static_cast<Base&>(derived).m_value << std::endl; // m_value is public in Base
+	// another way to upcasting
+	Base& base(derived); 
+	std::cout << base.m_value << std::endl; // m_value is public in Base
+}
+```
+
+이 기법은 Base가 잘못 설계되어 있을때 새로이 Base의 멤버들을 Derived에서 encapsulation 할 때 사용한다  
+하지만 Base를 통한 접근시 encapsulation이 깨질 수 있음을 알아야 한다   
+그리고 특정 overload된 함수만 접근 제어자를 바꿀 수는 없고 전부 바꾸어야 한다   
+
+만약 기능을 더이상 사용하지 않는다고 하면 delete 키워드를 통해 derived에서 상요되지 않음을 명시할 수 있으나 이 또한 Base로의 접근을 막지는 못한다   
+
+**P.S.**
+Base에서 public virtual f()가 Derived에서 override가 되어 있다면... 놀랍게도 Derived::f()가 호출이된다   
+이는 런타임에 결정되는 VTable의 특성 때문에 발생한다   
 
 ### Multiple inheritance
+
+다중 상속   
+
+![diamond_inheritance](<../../images/multipleInheritance.png>)   
+
+다중 상속은 말그대로 상속을 한번에 여러개 받는 것이다   
+어떻게보면 상속의 확장이라고 생각할 수 있지만 이는 S/W의 복잡성을 증가시키고 유지 보수에 친화적이지 않다   
+가장 대표적인 예로 Diamond 상속이 존재한다   
+
+예시를 가지고 설명해보자
+
+**E.G.**
+```c++
+```
+
+위의 예시를보면   
+참조에 있어 모호성이 발생하고 메모리에 있어 중복이 발생하게된다   
+또한 중복된 메모리의 불일치로 인한 혼동이 야기될 수 있으며 그중 가장 중요한 것은 가독성이 저하된다는 것이다   
+
+#### Mixin
+
+다른 클래스의 Base가 되지 않으면서 다른 클래스에서 사용할 수 있는 메서드를 포함하는 클래스   
+원하는 기능만들 Derived에 보내 `is - a` 관계를 아주 약하게 구성하는 것이다   
+
+이러한 방식은 주로 Templete과 함께 사용되는데 대표적인 예로 [`CRTP`](https://en.cppreference.com/w/cpp/language/crtp)가 있다   
+
+예제는 간단하게 [learncpp](https://www.learncpp.com/cpp-tutorial/multiple-inheritance/)에서 가져왔다   
+
+**E.G.**
+```c++
+// h/t to reader Waldo for this example
+#include <string>
+
+struct Point2D
+{
+	int x{};
+	int y{};
+};
+
+class Box // mixin Box class
+{
+public:
+	void setTopLeft(Point2D point) { m_topLeft = point; }
+	void setBottomRight(Point2D point) { m_bottomRight = point; }
+private:
+	Point2D m_topLeft{};
+	Point2D m_bottomRight{};
+};
+
+class Label // mixin Label class
+{
+public:
+	void setText(const std::string_view str) { m_text = str; }
+	void setFontSize(int fontSize) { m_fontSize = fontSize; }
+private:
+	std::string m_text{};
+	int m_fontSize{};
+};
+
+class Tooltip // mixin Tooltip class
+{
+public:
+	void setText(const std::string_view str) { m_text = str; }
+private:
+	std::string m_text{};
+};
+
+class Button : public Box, public Label, public Tooltip {}; // Button using three mixins
+
+int main()
+{
+	Button button{};
+	button.Box::setTopLeft({ 1, 1 });
+	button.Box::setBottomRight({ 10, 10 });
+	button.Label::setText("Submit");
+	button.Label::setFontSize(6);
+	button.Tooltip::setText("Submit the form to the server");
+}
+```
 
 #### 다이아몬드 상속
 
 #### bridge pattern
 
 #### nested generalization
-
-# 참고자료
-
-[다중상속의 사용](https://isocpp.org/wiki/faq/ multiple-inheritance#virtual-inheritance-where)   
-
-[모두의 코드](https://modoocode.com/category/C++
-CPP)   
 
 
