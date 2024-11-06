@@ -2,17 +2,17 @@
 
 class Base {
 public:
-	int b_pub = 0;
+	int b_pub_ = 0;
 
 	void printMember() {
-		std::cout << b_pub << std::endl;
-		std::cout << b_pro << std::endl;
-		std::cout << b_pri << std::endl;
+		std::cout << b_pub_ << std::endl;
+		std::cout << b_pro_ << std::endl;
+		std::cout << b_pri_ << std::endl;
 	};
 protected:
-	int b_pro = 1;
+	int b_pro_ = 1;
 private:
-	int b_pri = 2;
+	int b_pri_ = 2;
 };
 
 
@@ -20,9 +20,9 @@ private:
 class Pub : public Base { 
 public: 
 	void printBase() {
-		std::cout << b_pub << std::endl;
-		std::cout << b_pro << std::endl;
-		// std::cout << b_pri << std::endl; // inaccessible
+		std::cout << b_pub_ << std::endl;
+		std::cout << b_pro_ << std::endl;
+		// std::cout << b_pri_ << std::endl; // inaccessible
 	};
 };
 
@@ -30,9 +30,9 @@ public:
 class Pro : protected Base { 
 public: 
 	void printBase() {
-		std::cout << b_pub << std::endl;
-		std::cout << b_pro << std::endl;
-		// std::cout << b_pri << std::endl; // inaccessible
+		std::cout << b_pub_ << std::endl;
+		std::cout << b_pro_ << std::endl;
+		// std::cout << b_pri_ << std::endl; // inaccessible
 	};
 };
 
@@ -40,9 +40,9 @@ public:
 class Pri : private Base { 
 public: 
 	void printBase() {
-		std::cout << b_pub << std::endl;
-		std::cout << b_pro << std::endl;
-		// std::cout << b_pri << std::endl; // inaccessible
+		std::cout << b_pub_ << std::endl;
+		std::cout << b_pro_ << std::endl;
+		// std::cout << b_pri_ << std::endl; // inaccessible
 	};
 };
 
@@ -55,22 +55,22 @@ int main() {
 	std::cout << "===== print pub =====" << std::endl;
 	Pub pub;
 	pub.printBase();
-	pub.b_pub = -1;
-	// pub.b_pro = -1; // inaccessible
-	// pub.b_pri = -1; // inaccessible
+	pub.b_pub_ = -1;
+	// pub.b_pro_ = -1; // inaccessible
+	// pub.b_pri_ = -1; // inaccessible
 
 	std::cout << "===== print pro =====" << std::endl;
 	Pro pro;
 	pro.printBase();
-	// pro.b_pub = -1; // inaccessible
-	// pro.b_pro = -1; // inaccessible
-	// pro.b_pri = -1; // inaccessible
+	// pro.b_pub_ = -1; // inaccessible
+	// pro.b_pro_ = -1; // inaccessible
+	// pro.b_pri_ = -1; // inaccessible
 
 	std::cout << "===== print pri =====" << std::endl;
 	Pri pri;
 	pri.printBase();
-	// pro.b_pub = -1; // inaccessible
-	// pro.b_pro = -1; // inaccessible
-	// pro.b_pri = -1; // inaccessible
+	// pro.b_pub_ = -1; // inaccessible
+	// pro.b_pro_ = -1; // inaccessible
+	// pro.b_pri_ = -1; // inaccessible
 
 }
