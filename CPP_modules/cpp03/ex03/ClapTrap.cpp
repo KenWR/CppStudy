@@ -2,14 +2,24 @@
 
 #include <iostream>
 
+ClapTrap::ClapTrap()
+	: name_("Strange"), 
+	hit_points_(this->default_hit_points_),
+	energy_points_(this->default_energy_points_),
+	attack_damage_(this->default_attack_damage_)
+{
+	std::cout << "\033[33mClapTrap " << this->name_ 
+		<< " Constructor works done\033[0m" << std::endl;
+}
+
 ClapTrap::ClapTrap(const std::string& name)
 	: name_(name), 
-	hit_points_(10), 
-	energy_points_(10), 
-	attack_damage_(0) 
+	hit_points_(this->default_hit_points_),
+	energy_points_(this->default_energy_points_),
+	attack_damage_(this->default_attack_damage_) 
 {
-		std::cout << "\033[33mClapTrap " << this->name_ 
-			<< " Constructor works done\033[0m" << std::endl;
+	std::cout << "\033[33mClapTrap " << this->name_ 
+		<< " Constructor works done\033[0m" << std::endl;
 }
 
 ClapTrap::ClapTrap(const std::string& name, unsigned int hit_points, unsigned int energy_points, unsigned int attack_damage) 
@@ -18,8 +28,8 @@ ClapTrap::ClapTrap(const std::string& name, unsigned int hit_points, unsigned in
 	energy_points_(energy_points),
 	attack_damage_(attack_damage) 
 {
-		std::cout << "\033[33mClapTrap " << this->name_ 
-			<< " Parameter constructor works done\033[0m" << std::endl;
+	std::cout << "\033[33mClapTrap " << this->name_ 
+		<< " constructor works done\033[0m" << std::endl;
 }
 
 ClapTrap::ClapTrap(const ClapTrap& copy)

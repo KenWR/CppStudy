@@ -5,9 +5,13 @@
 
 #include <string>
 
-class FragTrap : public ClapTrap
+class FragTrap : virtual public ClapTrap
 {
-private:
+protected:
+	static const unsigned int default_hit_points_ = 100;
+	static const unsigned int default_energy_points_ = 100;
+	static const unsigned int default_attack_damage_ = 30;
+
 	FragTrap();
 
 public:

@@ -6,13 +6,17 @@
 class ClapTrap 
 {
 protected:
+	static const unsigned int default_hit_points_ = 10;
+	static const unsigned int default_energy_points_ = 10;
+	static const unsigned int default_attack_damage_ = 0;
+	
 	std::string 	name_;
 	unsigned int	hit_points_;	// represent the health of the ClapTrap
 	unsigned int	energy_points_;
 	unsigned int	attack_damage_;
 
 	ClapTrap();
-
+	
 public:
 	ClapTrap(const std::string& name);
 	ClapTrap(const std::string& name, unsigned int hit_points, unsigned int energy_points, unsigned int attack_damage);

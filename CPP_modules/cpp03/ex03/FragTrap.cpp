@@ -2,15 +2,27 @@
 
 #include <iostream>
 
+FragTrap::FragTrap() : ClapTrap()
+{
+	std::cout << "\033[33mFragTrap " << this->name_ 
+		<< " Constructor works done\033[0m" << std::endl;
+}
+
 FragTrap::FragTrap(const std::string& name)
-	: ClapTrap(name, 100, 100, 30)
+	: ClapTrap(name, 
+				this->default_hit_points_, 
+				this->default_energy_points_, 
+				this->default_attack_damage_)
 {
 	std::cout << "\033[33mFragTrap " << this->name_ 
 		<< " Constructor works done\033[0m" << std::endl;
 }
 
 FragTrap::FragTrap(const FragTrap& copy)
-	: ClapTrap(copy.name_, copy.hit_points_, copy.energy_points_, copy.attack_damage_)
+	: ClapTrap(copy.name_, 
+				copy.hit_points_, 
+				copy.energy_points_, 
+				copy.attack_damage_)
 {
 	std::cout << "\033[33mFragTrap " << this->name_ 
 		<< " Copy constructor works done\033[0m" << std::endl;

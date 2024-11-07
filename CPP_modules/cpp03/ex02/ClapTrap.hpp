@@ -5,13 +5,14 @@
 
 class ClapTrap 
 {
+private:
+	ClapTrap();
+
 protected:
 	std::string 	name_;
 	unsigned int	hit_points_;	// represent the health of the ClapTrap
 	unsigned int	energy_points_;
 	unsigned int	attack_damage_;
-
-	ClapTrap();
 
 public:
 	ClapTrap(const std::string& name);

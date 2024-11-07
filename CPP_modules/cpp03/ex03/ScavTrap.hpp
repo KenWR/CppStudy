@@ -5,8 +5,15 @@
 
 #include <string>
 
-class ScavTrap : public ClapTrap 
+class ScavTrap : virtual public ClapTrap 
 {
+protected:
+	static const unsigned int default_hit_points_ = 100;
+	static const unsigned int default_energy_points_ = 50;
+	static const unsigned int default_attack_damage_ = 20;
+
+	ScavTrap();
+
 public:
 	ScavTrap(const std::string& name);
 	ScavTrap(const ScavTrap& copy);
