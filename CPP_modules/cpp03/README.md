@@ -6,7 +6,6 @@
 		- [Name hiding](#name-hiding)
 			- [컴파일러는 overload된 함수들은 어떻게 찾을까?](#컴파일러는-overload된-함수들은-어떻게-찾을까)
 			- [Hiding inherited functionality](#hiding-inherited-functionality)
-	- [Implement](#implement)
 
 ---
 # CPP 03
@@ -194,4 +193,3 @@ int main(void) {
 Base에서 public virtual f()가 Derived에서 override가 되어 있다면... 놀랍게도 Derived::f()가 호출이된다   
 이는 런타임에 결정되는 VTable의 특성 때문에 발생한다   
 
-## Implement

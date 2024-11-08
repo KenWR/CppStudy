@@ -22,6 +22,22 @@
 
 ## Implement
 
+다이아몬드 상속은 좋지않은 결과를 초래한다    
+허나 이를 해결할 수 있는 방식은 몇가지가 있지만 그중 가상 상속을 통해 해결하였다     
+
+각 ScavTrap, FragTrap에서 ClapTrap을 상속할때 virtual로 상속을 하였고 이로 인해 ClapTrap은 한번만 생성이 된다   
+
+ClapTrap 생성시 최종 Derived에서 생성자를 호출하여 한번에 초기화를 하도록 하였다   
+그리고 각 Trap별로 기본 멤버변수 값을 `static const`로 protected에 선언함으로서 상속하는 DiamondTrap에서 해당 값을 가져다 초기화에 쓸수 있도록 하였다   
+
+```c++
+static const unsigned int default_hit_points_ = 100;
+static const unsigned int default_energy_points_ = 100;
+static const unsigned int default_attack_damage_ = 30;
+```   
+
+ScavTrap의 attack()함수를 그대로 가져와 쓰도록 하라는 요구사항이 있어서 ScavTrap을 먼저 상속받도록 해서 ScavTrap::attack()이 먼저 실행되도록 하는것도 있지만 가독성을 우선시하여 DiamondTrap에서 redefine하여 ScavTrap::attack()을 호출하도록 하였다   
+
 ## Concepts
 
 ### Multiple inheritance
