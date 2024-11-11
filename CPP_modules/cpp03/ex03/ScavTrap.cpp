@@ -28,7 +28,7 @@ ScavTrap::ScavTrap(const ScavTrap& copy)
 ScavTrap& ScavTrap::operator=(const ScavTrap& src) 
 {
 	std::cout << "\033[33mScavTrap " << this->name_ 
-		<< " Align operator works done\033[0m" << std::endl;
+		<< " assignment operator works done\033[0m" << std::endl;
 
 	if (this == &src) return *this;
 

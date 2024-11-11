@@ -2,7 +2,7 @@
 
 #include <iostream>
 
-Cat::Cat() : Animal("Cat")
+Cat::Cat() : Animal(CAT), brain_(new Brain())
 {
 	std::cout << "\033[33mCat constructor works done\033[0m" << std::endl;
 }
@@ -14,7 +14,7 @@ Cat::Cat(const Cat& copy) : Animal(copy.getType())
 
 Cat& Cat::operator=(const Cat& src)
 {
-	std::cout << "\033[33mCat align operator works done\033[0m" << std::endl;
+	std::cout << "\033[33mCat assignment operator works done\033[0m" << std::endl;
 
 	if (this == &src) return *this;
 
@@ -26,6 +26,8 @@ Cat& Cat::operator=(const Cat& src)
 Cat::~Cat()
 {
 	std::cout << "\033[33mCat destructor works done\033[0m" << std::endl;
+
+	delete this->brain_;
 }
 
 

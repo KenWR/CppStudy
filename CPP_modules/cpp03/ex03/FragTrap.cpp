@@ -31,7 +31,7 @@ FragTrap::FragTrap(const FragTrap& copy)
 FragTrap& FragTrap::operator=(const FragTrap& src)
 {
 	std::cout << "\033[33mFragTrap " << this->name_ 
-		<< " Align operator works done\033[0m" << std::endl;
+		<< " assignment operator works done\033[0m" << std::endl;
 
 	if (this == &src) return *this;
 

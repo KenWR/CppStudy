@@ -45,7 +45,7 @@ ClapTrap::ClapTrap(const ClapTrap& copy)
 ClapTrap& ClapTrap::operator=(const ClapTrap& src) 
 {
 	std::cout << "\033[33mClapTrap " << this->name_ 
-		<< " Align operator works done\033[0m" << std::endl;
+		<< " assignment operator works done\033[0m" << std::endl;
 
 	if (this == &src) return *this;
 

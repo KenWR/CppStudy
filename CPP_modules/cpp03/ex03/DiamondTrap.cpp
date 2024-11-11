@@ -29,7 +29,7 @@ DiamondTrap::DiamondTrap(const DiamondTrap& copy)
 DiamondTrap& DiamondTrap::operator=(const DiamondTrap& src)
 {
 	std::cout << "\033[33mDiamondTrap " << this->name_ 
-		<< " Align operator works done\033[0m" << std::endl;
+		<< " assignment operator works done\033[0m" << std::endl;
 
 	if (this == &src) return *this;
 

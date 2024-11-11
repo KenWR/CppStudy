@@ -19,7 +19,7 @@ WrongAnimal::WrongAnimal(const WrongAnimal& copy) : type_(copy.type_)
 
 WrongAnimal& WrongAnimal::operator=(const WrongAnimal& src)
 {
-	std::cout << "\033[33mWrongAnimal align operator works done\033[0m" << std::endl;
+	std::cout << "\033[33mWrongAnimal assignment operator works done\033[0m" << std::endl;
 
 	if (this == &src) return *this;
 

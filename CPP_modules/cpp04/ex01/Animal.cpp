@@ -19,7 +19,7 @@ Animal::Animal(const Animal& copy) : type_(copy.type_)
 
 Animal& Animal::operator=(const Animal& src)
 {
-	std::cout << "\033[33mAnimal align operator works done\033[0m" << std::endl;
+	std::cout << "\033[33mAnimal assignment operator works done\033[0m" << std::endl;
 
 	if (this == &src) return *this;
 

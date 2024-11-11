@@ -66,7 +66,7 @@ The program only accepts ADD, SEARCH and EXIT.
 		(각 열의 너비는 10자이다) 
 	A pipe character (’|’) separates them.   
 		(각 열은 '|'로 구분된다)
-	The text must be right-aligned. 
+	The text must be right-assignmented. 
 		(텍스트는 오른쪽 정렬로 이루어져 있어야 한다)
 	If the text is longer than the column, it must be truncated and the last displayable character must be replaced by a dot (’.’).   
 		(텍스트가 열의 너비보다 길면, 마지막 글자를 '.'으로 대체하여 잘라낸다)

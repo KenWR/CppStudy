@@ -55,7 +55,7 @@ public:
 
 	WrongAnimal& operator=(const WrongAnimal& src)
 	{
-		std::cout << "\033[33mWrongAnimal align operator works done\033[0m" << std::endl;
+		std::cout << "\033[33mWrongAnimal assignment operator works done\033[0m" << std::endl;
 
 		if (this == &src) return *this;
 
@@ -96,7 +96,7 @@ public:
 
 	WrongCat& operator=(const WrongCat& src)
 	{
-		std::cout << "\033[33mWrongCat align operator works done\033[0m" << std::endl;
+		std::cout << "\033[33mWrongCat assignment operator works done\033[0m" << std::endl;
 
 		if (this == &src) return *this;
 

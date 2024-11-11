@@ -14,7 +14,7 @@ Dog::Dog(const Dog& copy) : Animal(copy.getType())
 
 Dog& Dog::operator=(const Dog& src)
 {
-	std::cout << "\033[33mDog align operator works done\033[0m" << std::endl;
+	std::cout << "\033[33mDog assignment operator works done\033[0m" << std::endl;
 
 	if (this == &src) return *this;
 

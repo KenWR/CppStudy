@@ -14,7 +14,7 @@ Cat::Cat(const Cat& copy) : Animal(copy.getType())
 
 Cat& Cat::operator=(const Cat& src)
 {
-	std::cout << "\033[33mCat align operator works done\033[0m" << std::endl;
+	std::cout << "\033[33mCat assignment operator works done\033[0m" << std::endl;
 
 	if (this == &src) return *this;
 
