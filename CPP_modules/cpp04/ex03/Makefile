@@ -4,7 +4,7 @@ OBJS = $(SRCS:.cpp=.o)
 
 NAME = materia
 CC = c++
-FLAG = -Wall -Wextra -Werror -std=c++98
+FLAG = -Wall -Wextra -Werror -std=c++98 -g
 
 all : $(NAME)
 

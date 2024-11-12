@@ -70,8 +70,10 @@ void Character::equip(AMateria* m)
 		if (this->inventory_[i] == 0)
 		{
 			this->inventory_[i] = m;
+			break;
 		}
 	}
+	
 	return;
 }
 
