@@ -1,6 +1,8 @@
 #include "AMateria.hpp"
+#include "ICharacter.hpp"
+#include <iostream>
 
-AMateria::AMateria(std::string const & type) : type_(type)
+AMateria::AMateria(const std::string& type) : type_(type)
 {
 }
 
@@ -24,4 +26,10 @@ AMateria::~AMateria()
 std::string const & AMateria::getType() const
 {
 	return this->type_;
+}
+
+void AMateria::use(ICharacter& target)
+{
+	std::cout << "Wild MAGIKARP use SPLASH to "<< target.getName() << " !!!" << std::endl
+		<< "But nothing happened!" << std::endl;
 }
