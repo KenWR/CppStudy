@@ -7,6 +7,7 @@ public:
 
 class ScavTrap : virtual public ClapTrap  { 
 public:
+	void callAttack() { attack(); } // call FragTrap::attack() by cross delegation
 	//void attack() { std::cout << "ScavTrap attack" << std::endl; }
 };
 class FragTrap : virtual public ClapTrap  { 
@@ -22,5 +23,6 @@ public:
 int main() {
 	DiamondTrap dt;
 	dt.attack();
+	
 	return 0;
 }
