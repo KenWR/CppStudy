@@ -59,6 +59,8 @@ class DiamondTrap : public ScavTrap, public FragTrap { ... };
 
 DiamondTrap -> ScavTrap -> FragTrap -> ClapTrap   
 
+만일 ScavTrap에서 자신에게 존재하지 않는 attack() 함수를 호출한다면 FragTrap의 attak()이 호출되며 이는 `교차 위임(cross delegation)` 이라고 한다   
+
 하지만 여기서 ScavTrap과 FragTrap에서 동일한 이름의 함수가 발견되면 모호성이 생기게 되므로 Diamond에서 함수 override를 해주거나 원하는 attack() 함수를 호출하도록 선택하면 된다   
 
 #### Mixin
