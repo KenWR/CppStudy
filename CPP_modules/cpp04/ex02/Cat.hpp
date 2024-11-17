@@ -1,14 +1,14 @@
 #ifndef CAT_HPP
 #define CAT_HPP
 
-#include "AAnimal.hpp"
+#include "Animal.hpp"
 #include "Brain.hpp"
 
 #include <string>
 
 #define CAT "Cat"
 
-class Cat : public AAnimal
+class Cat : public Animal
 {
 private:
 	Brain* brain_;

@@ -10,6 +10,8 @@ Dog::Dog() : Animal(DOG), brain_(new Brain())
 Dog::Dog(const Dog& copy) : Animal(copy.getType())
 {
 	std::cout << "\033[33mDog copy constructor works done\033[0m" << std::endl;
+
+	this->brain_ = new Brain(*copy.brain_);
 }
 
 Dog& Dog::operator=(const Dog& src)
@@ -19,6 +21,7 @@ Dog& Dog::operator=(const Dog& src)
 	if (this == &src) return *this;
 
 	this->type_ = src.type_;
+	this->brain_ = new Brain(*src.brain_);
 
 	return *this;
 }

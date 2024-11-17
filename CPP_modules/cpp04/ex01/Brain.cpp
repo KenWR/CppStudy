@@ -16,7 +16,7 @@ Brain::Brain(const Brain& copy)
 	std::cout << "\033[33mBrain copy constructor works done\033[0m" << std::endl;
 
 	for(size_t i = 0; i < this->ideas_->size(); ++i) {
-		ideas_[i] = copy.ideas_[i];
+		ideas_[i] = copy.getIdeas();
 	}
 }
 
@@ -27,7 +27,7 @@ Brain& Brain::operator=(const Brain& src)
 	if (this == &src) return *this;
 
 	for(size_t i = 0; i < this->ideas_->size(); ++i) {
-		ideas_[i] = src.ideas_[i];
+		ideas_[i] = src.getIdeas();
 	}
 
 	return *this;
@@ -36,4 +36,16 @@ Brain& Brain::operator=(const Brain& src)
 Brain::~Brain()
 {
 	std::cout << "\033[33mBrain destructor works done\033[0m" << std::endl;
+}
+
+std::string Brain::getIdeas() const
+{
+	return ideas_[0];
+}
+
+void Brain::setIdeas(const std::string& ideas)
+{
+	for(size_t i = 0; i < this->ideas_->size(); ++i) {
+		ideas_[i] = ideas;
+	}
 }
