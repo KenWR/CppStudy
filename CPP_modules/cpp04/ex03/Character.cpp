@@ -51,10 +51,6 @@ Character& Character::operator=(const Character& src)
 
 Character::~Character()
 {
-	if (this->inventory_[0]) delete this->inventory_[0];
-	if (this->inventory_[1]) delete this->inventory_[1];
-	if (this->inventory_[2]) delete this->inventory_[2];
-	if (this->inventory_[3]) delete this->inventory_[3];
 }
 
 
@@ -65,6 +61,7 @@ const std::string& Character::getName() const
 
 void Character::equip(AMateria* m)
 {
+	if (m == 0) return;
 	for(size_t i = 0; i < MAX_INVENTORY; ++i)
 	{
 		if (this->inventory_[i] == 0)
@@ -81,7 +78,6 @@ void Character::unequip(int idx)
 {
 	if (idx < 0 || 3 < idx || this->inventory_[idx] == 0) return;
 
-	delete this->inventory_[idx];
 	this->inventory_[idx] = 0;
 }
 

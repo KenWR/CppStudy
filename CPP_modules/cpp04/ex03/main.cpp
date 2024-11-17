@@ -13,14 +13,14 @@ int main()
 	src->learnMateria(new Cure());
 
 	ICharacter* me = new Character("me");
-	AMateria* tmp;
+	AMateria* tmp[3];
 
-	tmp = src->createMateria("ice");
-	me->equip(tmp);
-	tmp = src->createMateria("cure");
-	me->equip(tmp);
-	tmp = src->createMateria("wrong materia");
-	me->equip(tmp);
+	tmp[0] = src->createMateria("ice");
+	me->equip(tmp[0]);
+	tmp[1] = src->createMateria("cure");
+	me->equip(tmp[1]);
+	tmp[2] = src->createMateria("wrong materia");
+	me->equip(tmp[2]);
 
 	ICharacter* bob = new Character("bob");
 	ICharacter* banchan = new Character("banchan");
@@ -30,15 +30,15 @@ int main()
 	me->use(2, *bob); // empty slot
 	me->use(3, *bob); // empty slot
 	me->use(4, *bob); // out of scope
+	std::cout << std::endl;
 
 	std::cout << "bob can shoot ice bolt to banchan!" << std::endl;
-	tmp = src->createMateria("ice");
-	bob->equip(tmp);
+	bob->equip(tmp[0]);
 	bob->use(0, *banchan);
+	std::cout << std::endl;
 
 	std::cout << "and... banchan cure bob!" << std::endl;
-	tmp = src->createMateria("cure");
-	banchan->equip(tmp);
+	banchan->equip(tmp[1]);
 	banchan->use(0, *bob);
 	banchan->unequip(0); // cure unequip
 	banchan->unequip(1); // nothing
@@ -49,6 +49,9 @@ int main()
 	delete bob;
 	delete me;
 	delete src;
+	for (int i = 0; i < 3; ++i) {
+		if (tmp[i]) delete tmp[i];
+	}
 
 	return 0;
 }
