@@ -8,7 +8,7 @@ MateriaSource::MateriaSource()
 	this->materias_[3] = 0;
 }
 
-MateriaSource::MateriaSource(const MateriaSource& copy)
+MateriaSource::MateriaSource(const MateriaSource& copy) : IMateriaSource(copy)
 {
 	if (copy.materias_[0]) this->materias_[0] = copy.materias_[0]->clone();
 	else this->materias_[0] = 0;
