@@ -4,7 +4,7 @@ OBJS = $(SRCS:.cpp=.o)
 
 NAME = animal
 CC = c++
-FLAG = -Wall -Wextra -Werror -std=c++98 -g
+FLAG = -Wall -Wextra -Werror -std=c++98
 
 all : $(NAME)
 
