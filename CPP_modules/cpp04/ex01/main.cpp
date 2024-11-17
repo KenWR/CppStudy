@@ -24,7 +24,5 @@ int main()
 		delete animals[i];
 	}
 
-	system("leaks brainAnimal");
-
 	return 0;
 }

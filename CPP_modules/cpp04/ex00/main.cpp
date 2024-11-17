@@ -29,7 +29,5 @@ int main()
 	delete i;
 	delete wj;
 
-	System(leaks Animal);
-
 	return 0;
 }

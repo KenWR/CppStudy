@@ -50,7 +50,5 @@ int main()
 	delete me;
 	delete src;
 
-	system("leaks materia");
-
 	return 0;
 }
