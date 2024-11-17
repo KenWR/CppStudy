@@ -84,6 +84,7 @@
 		"ratio": "cpp",
 		"sstream": "cpp",
 		"stack": "cpp",
-		"string_view": "cpp"
+		"string_view": "cpp",
+		"C_Cpp.intelliSenseCache": "~/goinfre/vscodeIntelliSenceCache"
 	}
 }
