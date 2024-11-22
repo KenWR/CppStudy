@@ -7,7 +7,7 @@ class AMateria;
 
 #include <string>
 
-#define MAX_INVENTORY 4
+
 
 class Character : public ICharacter
 {
