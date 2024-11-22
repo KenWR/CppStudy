@@ -4,13 +4,13 @@
 	- [Description](#description)
 	- [Concepts](#concepts)
 		- [Object slicing](#object-slicing)
-		- [클래스 전방선언](#클래스-전방선언)
-	- [Implement](#implement)
 
 ---
 # CPP 04
 
 ## Description
+
+다형성, virtual, interface, abstract class 들에 대해서 배운다   
 
 ## Concepts
 
@@ -20,8 +20,3 @@
 
 이렇게 객체가 잘리는 것은 꽤나 위험하며 여러가지 문제가 생길 수 있기에 왠만해서는 객체를 전달받을때 reference나 pointer로 받아야 한다   
 
-### 클래스 전방선언
-
-
-
-## Implement
