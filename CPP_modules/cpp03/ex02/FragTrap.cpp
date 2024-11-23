@@ -34,7 +34,7 @@ FragTrap& FragTrap::operator=(const FragTrap& src)
 FragTrap::~FragTrap()
 {
 	std::cout << "\033[33mFragTrap " << this->name_ 
-		<< " Destructor works done\033[0m" << std::endl;
+		<< " DESTRUCTOR works done\033[0m" << std::endl;
 }
 	
 void FragTrap::highFivesGuys(void)

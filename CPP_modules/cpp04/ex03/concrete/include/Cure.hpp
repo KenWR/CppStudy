@@ -4,8 +4,7 @@
 class ICharacter;
 
 #include "AMateria.hpp"
-
-#define CURE "cure"
+#include "Config.hpp"
 
 class Cure : public AMateria
 {

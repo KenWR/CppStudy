@@ -5,6 +5,10 @@
 
 #include <iostream>
 
+// void leaks() {
+// 	system("leaks materia");
+// }
+
 int main()
 {
 	IMateriaSource* src = new MateriaSource();
@@ -47,11 +51,14 @@ int main()
 	banchan->unequip(4); // out of scope
 
 	delete bob;
+	delete banchan;
 	delete me;
 	delete src;
 	for (int i = 0; i < 3; ++i) {
 		if (tmp[i]) delete tmp[i];
 	}
+
+	// atexit(leaks);
 
 	return 0;
 }

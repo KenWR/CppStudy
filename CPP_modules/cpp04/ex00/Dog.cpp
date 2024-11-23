@@ -25,7 +25,7 @@ Dog& Dog::operator=(const Dog& src)
 
 Dog::~Dog()
 {
-	std::cout << "\033[33mDog destructor works done\033[0m" << std::endl;
+	std::cout << "\033[33mDog DESTRUCTOR works done\033[0m" << std::endl;
 }
 
 void Dog::makeSound() const

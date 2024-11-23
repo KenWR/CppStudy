@@ -35,7 +35,7 @@ Brain& Brain::operator=(const Brain& src)
 
 Brain::~Brain()
 {
-	std::cout << "\033[33mBrain destructor works done\033[0m" << std::endl;
+	std::cout << "\033[33mBrain DESTRUCTOR works done\033[0m" << std::endl;
 }
 
 std::string Brain::getIdeas() const

@@ -1,10 +1,9 @@
 #ifndef MATERIASOURCE_HPP
 #define MATERIASOURCE_HPP
 
-#include "AMateria.hpp"
 #include "IMateriaSource.hpp"
-
-#define MAX_MATERIA 4
+#include "AMateria.hpp"
+#include "Config.hpp"
 
 class MateriaSource : public IMateriaSource
 {

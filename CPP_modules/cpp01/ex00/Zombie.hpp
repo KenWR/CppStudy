@@ -15,7 +15,7 @@ public:
 	Zombie( std::string name );					// Parameterized constructor
 	Zombie( const Zombie& copy );				// Copy constructor
 	Zombie& operator = ( const Zombie& src );	// Assignment operator overload
-	~Zombie( void );							// Destructor
+	~Zombie( void );							// DESTRUCTOR
 };
 
 Zombie* newZombie( std::string name );

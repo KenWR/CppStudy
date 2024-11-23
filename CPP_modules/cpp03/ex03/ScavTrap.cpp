@@ -43,7 +43,7 @@ ScavTrap& ScavTrap::operator=(const ScavTrap& src)
 ScavTrap::~ScavTrap() 
 {
 	std::cout << "\033[33mScavTrap "  << this->name_ 
-			  << " Destructor works done\033[0m" << std::endl;
+			  << " DESTRUCTOR works done\033[0m" << std::endl;
 }
 
 void	ScavTrap::attack(const std::string& target) 

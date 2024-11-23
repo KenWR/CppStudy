@@ -1,8 +1,18 @@
 #include "Character.hpp"
 #include "AMateria.hpp"
+#include "Config.hpp"
+#include <iostream>
 
 Character::Character(const std::string& name) : ICharacter(), name_(name)
 {
+	#ifdef LOUD
+		std::cout 
+		<< BOLD << UNDERLINE << "Character" << RESET << " " 
+		<< BOLD << GREEN << "CONSTRUCTOR" << RESET 
+		<< " << Most Derived Class!!!"
+		<< std::endl;
+	#endif
+
 	this->inventory_[0] = 0;
 	this->inventory_[1] = 0;
 	this->inventory_[2] = 0;
@@ -11,6 +21,14 @@ Character::Character(const std::string& name) : ICharacter(), name_(name)
 
 Character::Character(const Character& copy) : ICharacter(copy), name_(copy.name_)
 {
+	#ifdef LOUD
+		std::cout 
+		<< BOLD << UNDERLINE << "Character" << RESET << " " 
+		<< BOLD << GREEN << "COPY CONSTRUCTOR" << RESET 
+		<< " << Most Derived Class!!!"
+		<< std::endl;
+	#endif
+
 	if (copy.inventory_[0]) this->inventory_[0] = copy.inventory_[0]->clone();
 	else this->inventory_[0] = 0;
 
@@ -26,6 +44,13 @@ Character::Character(const Character& copy) : ICharacter(copy), name_(copy.name_
 
 Character& Character::operator=(const Character& src)
 {
+	#ifdef LOUD
+		std::cout 
+		<< BOLD << UNDERLINE << "Character" << RESET << " " 
+		<< BOLD << GREEN << "ALIGN ASSIGNMENT" << RESET 
+		<< std::endl;
+	#endif
+
 	if (this == &src) return *this;
 
 	this->name_ = src.name_;
@@ -51,6 +76,12 @@ Character& Character::operator=(const Character& src)
 
 Character::~Character()
 {
+	#ifdef LOUD
+		std::cout 
+		<< BOLD << UNDERLINE << "Character" << RESET << " " 
+		<< BOLD << RED << "DESTRUCTOR" << RESET 
+		<< std::endl;
+	#endif
 }
 
 
@@ -62,7 +93,7 @@ const std::string& Character::getName() const
 void Character::equip(AMateria* m)
 {
 	if (m == 0) return;
-	for(size_t i = 0; i < MAX_INVENTORY; ++i)
+	for(size_t i = 0; i < MAX_MATERIA; ++i)
 	{
 		if (this->inventory_[i] == 0)
 		{

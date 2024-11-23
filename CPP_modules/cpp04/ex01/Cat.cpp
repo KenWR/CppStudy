@@ -29,7 +29,7 @@ Cat& Cat::operator=(const Cat& src)
 
 Cat::~Cat()
 {
-	std::cout << "\033[33mCat destructor works done\033[0m" << std::endl;
+	std::cout << "\033[33mCat DESTRUCTOR works done\033[0m" << std::endl;
 
 	delete this->brain_;
 }

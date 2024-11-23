@@ -28,7 +28,7 @@ Fixed& Fixed::operator = ( const Fixed& src ) {
 }
 
 Fixed::~Fixed() {
-	std::cout << "Destructor called" << std::endl;
+	std::cout << "DESTRUCTOR called" << std::endl;
 }
 
 // member functions

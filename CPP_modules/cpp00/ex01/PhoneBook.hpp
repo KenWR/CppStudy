@@ -25,7 +25,7 @@ public:
     PhoneBook(const PhoneBook& src);
     // Copy assignment operator
     PhoneBook& operator=(const PhoneBook& src);
-    // Destructor
+    // DESTRUCTOR
     ~PhoneBook();
 
     bool        IsInputGood(std::string input, const int type);

@@ -25,7 +25,7 @@ WrongCat& WrongCat::operator=(const WrongCat& src)
 
 WrongCat::~WrongCat()
 {
-	std::cout << "\033[33mWrongCat destructor works done\033[0m" << std::endl;
+	std::cout << "\033[33mWrongCat DESTRUCTOR works done\033[0m" << std::endl;
 }
 
 

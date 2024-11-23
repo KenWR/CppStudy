@@ -30,7 +30,7 @@ WrongAnimal& WrongAnimal::operator=(const WrongAnimal& src)
 
 WrongAnimal::~WrongAnimal()
 {
-	std::cout << "\033[33mWrongAnimal destructor works done\033[0m" << std::endl;
+	std::cout << "\033[33mWrongAnimal DESTRUCTOR works done\033[0m" << std::endl;
 }
 
 void WrongAnimal::makeSound() const

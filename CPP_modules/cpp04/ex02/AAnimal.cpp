@@ -30,7 +30,7 @@ AAnimal& AAnimal::operator=(const AAnimal& src)
 
 AAnimal::~AAnimal()
 {
-	std::cout << "\033[33mAAnimal destructor works done\033[0m" << std::endl;
+	std::cout << "\033[33mAAnimal DESTRUCTOR works done\033[0m" << std::endl;
 }
 
 void AAnimal::makeSound() const

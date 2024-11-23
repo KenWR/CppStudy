@@ -34,10 +34,10 @@ public:
 		return *this;
 	}
 
-	// no virtual destructor
+	// no virtual DESTRUCTOR
 	~WrongAnimal()
 	{
-		std::cout << "\033[33mWrongAnimal destructor works done\033[0m" << std::endl;
+		std::cout << "\033[33mWrongAnimal DESTRUCTOR works done\033[0m" << std::endl;
 	}
 
 	void makeSound() const
@@ -75,10 +75,10 @@ public:
 		return *this;
 	}
 
-	// something wrong in this virtual destructor
+	// something wrong in this virtual DESTRUCTOR
 	virtual ~WrongCat()
 	{
-		std::cout << "\033[33mWrongCat destructor works done\033[0m" << std::endl;
+		std::cout << "\033[33mWrongCat DESTRUCTOR works done\033[0m" << std::endl;
 	}
 
 

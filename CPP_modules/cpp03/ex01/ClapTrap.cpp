@@ -50,7 +50,7 @@ ClapTrap& ClapTrap::operator=(const ClapTrap& src)
 ClapTrap::~ClapTrap() 
 {
 	std::cout << "\033[33mClapTrap " << this->name_ 
-		<< " Destructor works done\033[0m" << std::endl;
+		<< " DESTRUCTOR works done\033[0m" << std::endl;
 }
 
 void	ClapTrap::attack(const std::string& target) 

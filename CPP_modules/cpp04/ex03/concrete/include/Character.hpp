@@ -1,19 +1,17 @@
 #ifndef CHARACTER_HPP
 #define CHARACTER_HPP
 
-class AMateria;
-
 #include "ICharacter.hpp"
-
+#include "Config.hpp"
 #include <string>
 
-
+class AMateria;
 
 class Character : public ICharacter
 {
 private:
 	std::string name_;
-	AMateria* inventory_[MAX_INVENTORY];
+	AMateria* inventory_[MAX_MATERIA];
 	
 	Character();
 

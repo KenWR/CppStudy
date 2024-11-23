@@ -23,7 +23,7 @@ public:
     Contact(const Contact& src);
     // Copy assignment operator
     Contact& operator=(const Contact& src);
-    // Destructor
+    // DESTRUCTOR
     ~Contact();
 private:
     // Private member variables here
