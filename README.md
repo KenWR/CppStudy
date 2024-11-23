@@ -1,7 +1,7 @@
 ## INDEX
 
 - [Descripion](#descripion)
-		- [Other C++ modules:](#other-c-modules)
+	- [C++ modules:](#c-modules)
 - [Awesome portals for learning CPP](#awesome-portals-for-learning-cpp)
 ---
 
@@ -9,7 +9,7 @@
 
 CPP를 마스터 하기 위한 공부를 하며 공부한 내용을 정리해 놓기 위한 공간   
 
-### Other C++ modules:
+## C++ modules:
 
 [CPP module](https://github.com/KenWR/CppStudy/tree/master/CPP_modules)
 
