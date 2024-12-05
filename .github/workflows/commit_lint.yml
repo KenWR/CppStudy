@@ -14,21 +14,19 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
+        with:
+          fetch-depth: 0  # 전체 커밋 기록 가져오기
 
       - name: Set up Node.js
         uses: actions/setup-node@v3
         with:
           node-version: '16'
 
-      - name: Install dependencies
-        run: |
-          npm install
-      
-      - name: Install commitlint
+      - name: Install dependencies and commitlint
         run: |
           npm install --save-dev @commitlint/config-conventional @commitlint/cli
           echo "module.exports = {extends: ['@commitlint/config-conventional']};" > commitlint.config.js
 
       - name: Run commitlint
         run: |
-          npx --no-install commitlint --from=HEAD~1 --to=HEAD
+          npx commitlint --from=origin/main --to=HEAD
