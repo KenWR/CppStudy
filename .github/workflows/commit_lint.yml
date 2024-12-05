@@ -25,9 +25,9 @@ jobs:
           npm install
       
       - name: Install commitlint
-        run: /
+        run: |
           npm install --save-dev @commitlint/config-conventional @commitlint/cli
-          echo "export default {extends: ['@commitlint/config-conventional']};" > commitlint.config.js
+          echo "module.exports = {extends: ['@commitlint/config-conventional']};" > commitlint.config.js
 
       - name: Run commitlint
         run: |
