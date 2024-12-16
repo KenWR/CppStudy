@@ -17,7 +17,7 @@ jobs:
           sudo apt-get install -y cppcheck
 
       - run: |
-          sudo apt-get install -y cppcheck
+          sudo apt-get install -y libxml2-utils
 
       - run: |
           cppcheck --enable=all --xml --output-file=report.xml .
