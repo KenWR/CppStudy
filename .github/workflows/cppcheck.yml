@@ -17,13 +17,13 @@ jobs:
           sudo apt-get install -y cppcheck
 
       - run: |
-          sudo apt-get install -y libxml2-utils
+          sudo apt-get install -y cppcheck
 
       - run: |
           cppcheck --enable=all --xml --output-file=report.xml .
 
       - run: |
-          xmllint --xpath '//error[@severity="error"]' report.xml > filtered_report.xml
+          xmllint --xpath '//error[not(@severity="information")]' report.xml > filtered_report.xml
 
       - uses: Flast/cppcheck-sarif@v2
         with:
