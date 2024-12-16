@@ -23,7 +23,7 @@ jobs:
           cppcheck --enable=all --exit-code --xml --output-file=report.xml .
 
       - run: |
-          xmllint --xpath '//error[@severity="error"]' full_report.xml > filtered_report.xml
+          xmllint --xpath '//error[@severity="error"]' report.xml > filtered_report.xml
 
       - uses: Flast/cppcheck-sarif@v2
         with:
