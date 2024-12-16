@@ -20,7 +20,7 @@ jobs:
           sudo apt-get install -y libxml2-utils
 
       - run: |
-          cppcheck --enable=all --exit-code --xml --output-file=report.xml .
+          cppcheck --enable=all --error-exitcode=1 --xml --output-file=report.xml .
 
       - run: |
           xmllint --xpath '//error[@severity="error"]' report.xml > filtered_report.xml
