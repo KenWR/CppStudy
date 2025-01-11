@@ -5,6 +5,7 @@
 		- [Concepts](#concepts)
 		- [How to work?](#how-to-work)
 			- [요약](#요약)
+		- [Stack unwinding](#stack-unwinding)
 
 ---
 # CPP 05
@@ -107,6 +108,25 @@ C++의 Exception은 세가지 키워드 **throw**, **try**, **catch**를 통해 
 3. 타입 변환 없음
 	- **catch** 블록은 예외 타입이 정확히 일치할 때만 예외를 처리할 수 있다   
 	- 하지만 파생 클래스에서 부모 클래스로의 형 변한은 가능하다   
+
+
+### Stack unwinding
+
+try block은 놀랍게도 해당 블록 내의 throw를 감지하는 것 외에도 호출된 함수가 throw하는 예외도 감지할 수 있다   
+**Exception**의 가장 유용한 속성중 하나는 **throw statement**가 *try block* 안에 직접 배치될 필요가 없다는 것인데, 함수의 어디에서나 **throw**될 수 있으며, 이러한 **exception**은 호출자의 **try block**에서 **catch**될 수 있다   
+이런 방식으로 **exception**이 **catch**되면 실행은 **exception**이 **throw**된 지점에서 예외를 처리하는 **catch** 블록으로 점프한다    
+
+```c++
+#include <cmath>
+#include <iostream>
+
+double devide(double leftNum, double rightNum) {
+	
+}
+
+```
+
+
 
 
 
