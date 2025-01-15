@@ -116,16 +116,29 @@ try block은 놀랍게도 해당 블록 내의 throw를 감지하는 것 외에�
 **Exception**의 가장 유용한 속성중 하나는 **throw statement**가 *try block* 안에 직접 배치될 필요가 없다는 것인데, 함수의 어디에서나 **throw**될 수 있으며, 이러한 **exception**은 호출자의 **try block**에서 **catch**될 수 있다   
 이런 방식으로 **exception**이 **catch**되면 실행은 **exception**이 **throw**된 지점에서 예외를 처리하는 **catch** 블록으로 점프한다    
 
+만약, throw를 catch해주지 않는다면 어떻게 될까?     
 ```c++
-#include <cmath>
 #include <iostream>
 
-double devide(double leftNum, double rightNum) {
-	
+double devide(double lhs, double rhs) {
+  if (!rhs) throw "Divide by zero";
+
+  return (lhs / rhs);
 }
 
-```
+int main() {
+  double lhs, rhs;
 
+  std::cout << "Enter a number: " << std::endl;
+  std::cin >> lhs;
+  std::cout << "Enter another number: " << std::endl;
+  std::cin >> rhs;
+
+  std::cout << "Result: " << devide(lhs, rhs) << std::endl;
+
+  return 0;
+}
+```
 
 
 
