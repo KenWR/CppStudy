@@ -1,12 +1,12 @@
 ## INDEX
 
-- [CPP 05](#cpp-05)
+- [EX 00](#ex-00)
 	- [Description](#description)
 	- [Implement](#implement)
 	- [Concepts](#concepts)
 
 ---
-# CPP 05
+# EX 00
 
 ## Description
 
