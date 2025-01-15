@@ -13,14 +13,15 @@ class Bureaucrat {
 
   // getters
   const std::string& getName() const;
-  int getGrade() const;
+  const int getGrade() const;
 
   // setters
-  void setName(const std::string& name);
+  void setGrade(const int grade);
 
   // member functions
   void incrementGrade();
   void decrementGrade();
+  void validateGrade(int grade) const;
 
   // exceptions
   class GradeTooHighException : public std::exception {
@@ -33,7 +34,7 @@ class Bureaucrat {
   };
 
  private:
-  std::string name_;
+  const std::string name_;
   int grade_;  // 1 to 150, 1 is the highest grade, 150 is the lowest
 
   Bureaucrat(const Bureaucrat& rhs);

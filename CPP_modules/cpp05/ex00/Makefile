@@ -1,5 +1,5 @@
-SRCS = main.cpp
-INCLUDES = 
+SRCS = main.cpp Bureaucrat.cpp
+INCLUDES = .
 OBJS = $(SRCS:.cpp=.o)
 
 NAME = 
@@ -8,10 +8,10 @@ FLAG = -Wall -Wextra -Werror -std=c++98
 
 all : $(NAME)
 
-$(NAME) : $(OBJS) $(INCLUDES)
+$(NAME) : $(OBJS) -I$(INCLUDES)
 	$(CC) $(FLAG) $(OBJS) -o $(NAME)
 
-%.o : %.cpp $(INCLUDES)
+%.o : %.cpp -I$(INCLUDES)
 	$(CC) $(FLAG) -c $< -o $@
 
 clean :
