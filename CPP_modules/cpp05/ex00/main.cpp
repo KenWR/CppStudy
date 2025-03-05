@@ -1,17 +1,19 @@
 #include <iostream>
 
 #include "Bureaucrat.hpp"
+#include "Config.hpp"
 
 int main() {
   std::cout << "============== CPP MODULE 05 / EX 00 =============="
             << std::endl;
 
-  // Test 1: Valid Bureaucrat Creation
+  std::cout << BOLD << "Test 1: Valid Bureaucrat Creation\n" << RESET;
   try {
     Bureaucrat trump("President", Bureaucrat::kHighestGrade_);
-    Bureaucrat biden("Clerk", Bureaucrat::kLowestGrade_);
-
     std::cout << "Created Bureaucrats successfully:" << std::endl;
+    Bureaucrat biden("Clerk", Bureaucrat::kLowestGrade_);
+    std::cout << "Created Bureaucrats successfully:" << std::endl;
+
     std::cout << "Donald Trump: " << trump << std::endl;
     std::cout << "Joe Biden: " << biden << std::endl;
   } catch (const std::exception& e) {
@@ -38,41 +40,42 @@ int main() {
 
   // Test 3: Increment and Decrement Grades
   try {
-    Bureaucrat officer("Lieutenant", 100);
+    Bureaucrat elon("DOGE Leader", 100);
+    std::cout << "Created Bureaucrats successfully:" << std::endl;
 
-    std::cout << "Initial: " << "Officer Alex: " << officer << std::endl;
+    std::cout << "Elon musk: " << elon << std::endl;
 
-    officer.incrementGrade();
-    std::cout << "After Increment: " << "Officer Alex: " << officer
+    elon.incrementGrade();
+    std::cout << "After Increment: " << "Elon musk: " << elon
               << std::endl;
 
-    officer.decrementGrade();
-    std::cout << "After Decrement: " << "Officer Alex: " << officer
+    elon.decrementGrade();
+    std::cout << "After Decrement: " << "Elon musk: " << elon
               << std::endl;
 
     // Increment to max grade to test exception
-    officer.setGrade(2);
-    officer.incrementGrade();  // Should work
+    elon.setGrade(2);
+    elon.incrementGrade();  // Should work
     std::cout << "After setting grade to 2 and incrementing: "
-              << "Officer Alex: " << officer << std::endl;
+              << "Elon musk: " << elon << std::endl;
 
-    officer.incrementGrade();  // Should throw GradeTooHighException
+    elon.incrementGrade();  // Should throw GradeTooHighException
   } catch (const Bureaucrat::GradeTooHighException& e) {
-    std::cerr << "Officer Alex: " << e.what() << std::endl;
+    std::cerr << "Elon musk: " << e.what() << std::endl;
   }
 
   try {
-    Bureaucrat assistant("Junior Clerk", 149);
+    Bureaucrat Bob("Junior Clerk", 149);
 
-    std::cout << "Initial: " << "Assistant Bob: " << assistant << std::endl;
+    std::cout << "Initial: " << "Bob: " << Bob << std::endl;
 
-    assistant.decrementGrade();
-    std::cout << "After Decrement: " << "Assistant Bob: " << assistant
+    Bob.decrementGrade();
+    std::cout << "After Decrement: " << "Bob: " << Bob
               << std::endl;
 
-    assistant.decrementGrade();  // Should throw GradeTooLowException
+    Bob.decrementGrade();  // Should throw GradeTooLowException
   } catch (const Bureaucrat::GradeTooLowException& e) {
-    std::cerr << "Assistant Bob: " << e.what() << std::endl;
+    std::cerr << "Bob: " << e.what() << std::endl;
   }
 
   std::cout << "\n=============================================\n" << std::endl;
