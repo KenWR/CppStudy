@@ -7,7 +7,7 @@
 Bureaucrat::Bureaucrat(const std::string &name, const int grade) : name_(name), grade_(grade)
 {
     validateGrade(grade_);
-    std::cout << O_YELLOW << "Created Bureaucrats successfully\n" << O_RESET;
+    std::cout << O_YELLOW << "Created Bureaucrat successfully\n" << O_RESET;
 }
 
 Bureaucrat::~Bureaucrat()
