@@ -13,7 +13,7 @@ Bureaucrat::~Bureaucrat() {}
 
 const std::string& Bureaucrat::getName() const { return name_; }
 
-const int Bureaucrat::getGrade() const { return grade_; }
+int Bureaucrat::getGrade() const { return grade_; }
 
 void Bureaucrat::setGrade(const int grade) {
   validateGrade(grade);

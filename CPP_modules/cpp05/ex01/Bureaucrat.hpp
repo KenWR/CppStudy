@@ -13,7 +13,7 @@ class Bureaucrat {
 
   // getters
   const std::string& getName() const;
-  const int getGrade() const;
+  int getGrade() const;
 
   // setters
   void setGrade(const int grade);
