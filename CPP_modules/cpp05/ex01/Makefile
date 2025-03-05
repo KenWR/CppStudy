@@ -1,18 +1,18 @@
-SRCS = main.cpp Bureaucrat.cpp
+SRCS = main.cpp Bureaucrat.cpp Form.cpp
 INCLUDES = .
 OBJS = $(SRCS:.cpp=.o)
 
-NAME = 
+NAME = form_up
 CC = c++
 FLAG = -Wall -Wextra -Werror -std=c++98
 
 all : $(NAME)
 
 $(NAME) : $(OBJS) -I$(INCLUDES)
-	$(CC) $(FLAG) $(OBJS) -o $(NAME)
+	$(CC) $(FLAG) $(OBJS) -o $(NAME) -I$(INCLUDES)
 
 %.o : %.cpp -I$(INCLUDES)
-	$(CC) $(FLAG) -c $< -o $@
+	$(CC) $(FLAG) -c $< -o $@ -I$(INCLUDES)
 
 clean :
 	@rm -f $(OBJS)
