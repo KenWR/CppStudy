@@ -20,7 +20,6 @@ class Form
 
     // member functions
     void beSigned(const Bureaucrat &Bureaucrat);
-    void signForm(const Bureaucrat &Bureaucrat);
 
     class GradeTooHighException : public std::exception
     {
@@ -35,10 +34,10 @@ class Form
     };
 
   private:
-    const std::string name_;
-    const int requiredGradeToSign_;
-    const int requiredGradeToExecute_;
-    bool isSigned_;
+    const std::string name_;           // A constant name
+    const int requiredGradeToSign_;    // A constant grade required to sign it.
+    const int requiredGradeToExecute_; // A constant grade required to execute it.
+    bool isSigned_;                    // A boolean indicating whether it is signed (at construction, it’s not).
 
     Form(const Form &rhs);
     Form &operator=(const Form &rhs);

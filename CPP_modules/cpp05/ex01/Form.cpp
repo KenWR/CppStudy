@@ -1,6 +1,9 @@
 #include "Form.hpp"
 
+#include <iostream>
+
 #include "Bureaucrat.hpp"
+#include "Config.hpp"
 
 Form::Form(const std::string name, const int requiredGradeToSign, const int requiredGradeToExecute)
     : name_(name), requiredGradeToSign_(requiredGradeToSign), requiredGradeToExecute_(requiredGradeToExecute),
@@ -14,6 +17,8 @@ Form::Form(const std::string name, const int requiredGradeToSign, const int requ
     {
         throw GradeTooLowException();
     }
+
+    std::cout << O_YELLOW << "Created Form successfully\n" << O_RESET;
 }
 
 Form::~Form()
@@ -39,19 +44,12 @@ bool Form::getIsSigned() const
 
 void Form::beSigned(const Bureaucrat &Bureaucrat)
 {
-    if (Bureaucrat.getGrade() <= requiredGradeToSign_)
-    {
-        isSigned_ = true;
-    }
-    else if (isSigned_)
-    {
-        std::cout << Bureaucrat.getName() << " couldn’t sign " << name_ << " because the form is already signed"
-                  << std::endl;
-    }
-    else
+    if (Bureaucrat.getGrade() > requiredGradeToSign_)
     {
         throw GradeTooLowException();
     }
+
+    isSigned_ = true;
 }
 
 const char *Form::GradeTooHighException::what() const throw()
@@ -66,7 +64,11 @@ const char *Form::GradeTooLowException::what() const throw()
 
 std::ostream &operator<<(std::ostream &o, const Form &rhs)
 {
-    o << "Form: " << rhs.getName() << ", Grade to sign: " << rhs.getRequiredGradeToSign()
-      << ", Grade to execute: " << rhs.getRequiredGradeToExecute() << ", Signed: " << rhs.getIsSigned();
+    o << "================================="
+      << "Form: " << rhs.getName() << '\n'
+      << "Grade to sign: " << rhs.getRequiredGradeToSign() << '\n'
+      << "Grade to execute: " << rhs.getRequiredGradeToExecute() << '\n'
+      << "Signed: " << rhs.getIsSigned();
+
     return o;
 }

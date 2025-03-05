@@ -3,6 +3,7 @@
 #include <iostream>
 
 #include "Config.hpp"
+#include "Form.hpp"
 
 Bureaucrat::Bureaucrat(const std::string &name, const int grade) : name_(name), grade_(grade)
 {
@@ -60,6 +61,18 @@ void Bureaucrat::validateGrade(int grade) const
     else if (grade > kLowestGrade_)
     {
         throw GradeTooLowException();
+    }
+}
+
+void Bureaucrat::signForm(const Form& form)
+{
+    if (form.getIsSigned())
+    {
+        std::cout << *this << " signed " << form;
+    }
+    else
+    {
+        std::cout << *this << " couldn’t sign " << form << " because the form is already signed\n";
     }
 }
 
