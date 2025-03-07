@@ -5,19 +5,18 @@
 
 #define BRAIN_FART "Derp"
 
-class Brain
-{
+class Brain {
 private:
-	std::string ideas_[100];
+  std::string ideas_[100];
 
 public:
-	Brain();
-	Brain(const Brain& copy);
-	Brain& operator=(const Brain& src);
-	~Brain();
+  Brain();
+  Brain(const Brain &copy);
+  Brain &operator=(const Brain &src);
+  ~Brain();
 
-	std::string	getIdeas() const;
-	void		setIdeas(const std::string& ideas);
+  std::string getIdeas() const;
+  void setIdeas(const std::string &ideas);
 };
 
 #endif

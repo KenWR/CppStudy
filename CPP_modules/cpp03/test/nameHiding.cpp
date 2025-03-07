@@ -2,25 +2,25 @@
 
 class Base {
 public:
-    Base() {};
+  Base(){};
 
-    void identify() const { std::cout << "Base::identify()" << std::endl; }
+  void identify() const { std::cout << "Base::identify()" << std::endl; }
 };
 
-class Derived: public Base {
+class Derived : public Base {
 public:
-    Derived() {};
+  Derived(){};
 
-    void identify() const { 
-		static_cast<Base const&>(*this).identify();
-		std::cout << "Derived::identify()" << std::endl; 
-	}};
+  void identify() const {
+    static_cast<Base const &>(*this).identify();
+    std::cout << "Derived::identify()" << std::endl;
+  }
+};
 
-int main()
-{
-    Base base;
-    base.identify(); // "Base::identify()"
+int main() {
+  Base base;
+  base.identify(); // "Base::identify()"
 
-    Derived derived;
-    derived.identify(); // "Derived::identify()"
+  Derived derived;
+  derived.identify(); // "Derived::identify()"
 }

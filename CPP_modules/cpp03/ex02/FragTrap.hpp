@@ -5,18 +5,17 @@
 
 #include <string>
 
-class FragTrap : public ClapTrap
-{
+class FragTrap : public ClapTrap {
 private:
-	FragTrap();
+  FragTrap();
 
 public:
-	FragTrap(const std::string& name);
-	FragTrap(const FragTrap& copy);
-	FragTrap& operator=(const FragTrap& src);
-	~FragTrap();
-	
-	void highFivesGuys(void);
+  FragTrap(const std::string &name);
+  FragTrap(const FragTrap &copy);
+  FragTrap &operator=(const FragTrap &src);
+  ~FragTrap();
+
+  void highFivesGuys(void);
 };
 
 #endif

@@ -5,15 +5,14 @@
 
 #include <string>
 
-class WrongCat : public WrongAnimal
-{
+class WrongCat : public WrongAnimal {
 public:
-	WrongCat();
-	WrongCat(const WrongCat& copy);
-	WrongCat& operator=(const WrongCat& src);
-	~WrongCat();
+  WrongCat();
+  WrongCat(const WrongCat &copy);
+  WrongCat &operator=(const WrongCat &src);
+  ~WrongCat();
 
-	void makeSound() const;
+  void makeSound() const;
 };
 
 #endif

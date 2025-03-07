@@ -5,27 +5,27 @@
 
 #include <string>
 
-class ScavTrap : virtual public ClapTrap 
-{
+class ScavTrap : virtual public ClapTrap {
 protected:
-	static const unsigned int default_hit_points_ = 100;
-	static const unsigned int default_energy_points_ = 50;
-	static const unsigned int default_attack_damage_ = 20;
+  static const unsigned int default_hit_points_ = 100;
+  static const unsigned int default_energy_points_ = 50;
+  static const unsigned int default_attack_damage_ = 20;
 
-	ScavTrap();
+  ScavTrap();
 
 public:
-	ScavTrap(const std::string& name);
-	ScavTrap(const ScavTrap& copy);
-	ScavTrap& operator=(const ScavTrap& src);
-	~ScavTrap();
+  ScavTrap(const std::string &name);
+  ScavTrap(const ScavTrap &copy);
+  ScavTrap &operator=(const ScavTrap &src);
+  ~ScavTrap();
 
-	void attack(const std::string& target);
-	void guardGate();
+  void attack(const std::string &target);
+  void guardGate();
 
-	void printAttack(const std::string& name, const std::string& target, unsigned int damage);
-	void printNotWorking(const std::string& name);
-	void printNotEnoughEnergy(const std::string& name);
+  void printAttack(const std::string &name, const std::string &target,
+                   unsigned int damage);
+  void printNotWorking(const std::string &name);
+  void printNotEnoughEnergy(const std::string &name);
 };
 
 #endif

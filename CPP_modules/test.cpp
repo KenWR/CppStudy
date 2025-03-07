@@ -1,27 +1,23 @@
-#include <string>
 #include <iostream>
+#include <string>
 
-class WrongAnimal
-{
+class WrongAnimal {
 protected:
-	std::string type_;
+  std::string type_;
 
 public:
-	~WrongAnimal() { std::cout << "WrongAnimal" << std::endl; };
-
+  ~WrongAnimal() { std::cout << "WrongAnimal" << std::endl; };
 };
 
-class WrongCat : public WrongAnimal
-{
+class WrongCat : public WrongAnimal {
 public:
-	virtual ~WrongCat() { std::cout << "WrongCat" << std::endl; };
+  virtual ~WrongCat() { std::cout << "WrongCat" << std::endl; };
 };
 
-int main(void)
-{
-    WrongAnimal* wa = new WrongCat();
-    
-	delete wa;
+int main(void) {
+  WrongAnimal *wa = new WrongCat();
 
-    return 0;
+  delete wa;
+
+  return 0;
 }

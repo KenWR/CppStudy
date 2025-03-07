@@ -5,15 +5,14 @@
 
 #include <string>
 
-class Dog : public Animal
-{
+class Dog : public Animal {
 public:
-	Dog();
-	Dog(const Dog& copy);
-	Dog& operator=(const Dog& src);
-	virtual ~Dog();
+  Dog();
+  Dog(const Dog &copy);
+  Dog &operator=(const Dog &src);
+  virtual ~Dog();
 
-	void makeSound() const;
+  void makeSound() const;
 };
 
 #endif

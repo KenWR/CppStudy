@@ -2,14 +2,14 @@
 
 #include <iostream>
 
-Bureaucrat::Bureaucrat(const std::string& name, const int grade)
+Bureaucrat::Bureaucrat(const std::string &name, const int grade)
     : name_(name), grade_(grade) {
   validateGrade(grade_);
 }
 
 Bureaucrat::~Bureaucrat() {}
 
-const std::string& Bureaucrat::getName() const { return name_; }
+const std::string &Bureaucrat::getName() const { return name_; }
 
 const int Bureaucrat::getGrade() const { return grade_; }
 
@@ -43,15 +43,15 @@ void Bureaucrat::validateGrade(int grade) const {
   }
 }
 
-const char* Bureaucrat::GradeTooHighException::what() const throw() {
+const char *Bureaucrat::GradeTooHighException::what() const throw() {
   return "Grade is too high";
 }
 
-const char* Bureaucrat::GradeTooLowException::what() const throw() {
+const char *Bureaucrat::GradeTooLowException::what() const throw() {
   return "Grade is too low";
 }
 
-std::ostream& operator<<(std::ostream& o, const Bureaucrat& rhs) {
+std::ostream &operator<<(std::ostream &o, const Bureaucrat &rhs) {
   o << rhs.getName() << ", bureaucrat grade " << rhs.getGrade();
   return o;
 }

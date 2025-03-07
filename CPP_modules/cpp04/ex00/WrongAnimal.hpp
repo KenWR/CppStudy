@@ -3,21 +3,20 @@
 
 #include <string>
 
-class WrongAnimal
-{
+class WrongAnimal {
 protected:
-	std::string type_;
+  std::string type_;
 
 public:
-	WrongAnimal();
-	WrongAnimal(const std::string& type);
-	WrongAnimal(const WrongAnimal& copy);
-	WrongAnimal& operator=(const WrongAnimal& src);
-	virtual ~WrongAnimal();
+  WrongAnimal();
+  WrongAnimal(const std::string &type);
+  WrongAnimal(const WrongAnimal &copy);
+  WrongAnimal &operator=(const WrongAnimal &src);
+  virtual ~WrongAnimal();
 
-	void makeSound() const;
+  void makeSound() const;
 
-	std::string getType() const;
+  std::string getType() const;
 };
 
 #endif

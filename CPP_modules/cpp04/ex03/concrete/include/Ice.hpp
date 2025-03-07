@@ -6,16 +6,15 @@
 
 class ICharacter;
 
-class Ice : public AMateria
-{
+class Ice : public AMateria {
 public:
-	Ice();
-	Ice(const Ice& copy);
-	Ice& operator=(const Ice& src);
-	~Ice();
+  Ice();
+  Ice(const Ice &copy);
+  Ice &operator=(const Ice &src);
+  ~Ice();
 
-	AMateria* clone() const;
-	void use(ICharacter& target);
+  AMateria *clone() const;
+  void use(ICharacter &target);
 };
 
 #endif

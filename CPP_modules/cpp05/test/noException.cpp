@@ -1,7 +1,8 @@
 #include <iostream>
 
 double devide(double lhs, double rhs) {
-  if (!rhs) throw "Divide by zero";
+  if (!rhs)
+    throw "Divide by zero";
 
   return (lhs / rhs);
 }

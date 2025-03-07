@@ -4,14 +4,14 @@
 
 #include "Form.hpp"
 
-Bureaucrat::Bureaucrat(const std::string& name, const int grade)
+Bureaucrat::Bureaucrat(const std::string &name, const int grade)
     : name_(name), grade_(grade) {
   validateGrade(grade_);
 }
 
 Bureaucrat::~Bureaucrat() {}
 
-const std::string& Bureaucrat::getName() const { return name_; }
+const std::string &Bureaucrat::getName() const { return name_; }
 
 const int Bureaucrat::getGrade() const { return grade_; }
 
@@ -45,7 +45,7 @@ void Bureaucrat::validateGrade(int grade) const {
   }
 }
 
-void Bureaucrat::signForm(class Form& form) {
+void Bureaucrat::signForm(class Form &form) {
   if (form.getIsSigned()) {
     std::cout << name_ << " couldn't sign " << form.getName()
               << " because the form is already signed" << std::endl;
@@ -55,15 +55,15 @@ void Bureaucrat::signForm(class Form& form) {
   }
 }
 
-const char* Bureaucrat::GradeTooHighException::what() const throw() {
+const char *Bureaucrat::GradeTooHighException::what() const throw() {
   return "Grade is too high";
 }
 
-const char* Bureaucrat::GradeTooLowException::what() const throw() {
+const char *Bureaucrat::GradeTooLowException::what() const throw() {
   return "Grade is too low";
 }
 
-std::ostream& operator<<(std::ostream& o, const Bureaucrat& rhs) {
+std::ostream &operator<<(std::ostream &o, const Bureaucrat &rhs) {
   o << rhs.getName() << ", bureaucrat grade " << rhs.getGrade();
   return o;
 }

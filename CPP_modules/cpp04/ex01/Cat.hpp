@@ -8,17 +8,17 @@
 
 #define CAT "Cat"
 
-class Cat : public Animal
-{
+class Cat : public Animal {
 private:
-	Brain* brain_;
-public:
-	Cat();
-	Cat(const Cat& copy);
-	Cat& operator=(const Cat& src);
-	virtual ~Cat();
+  Brain *brain_;
 
-	void makeSound() const;
+public:
+  Cat();
+  Cat(const Cat &copy);
+  Cat &operator=(const Cat &src);
+  virtual ~Cat();
+
+  void makeSound() const;
 };
 
 #endif
