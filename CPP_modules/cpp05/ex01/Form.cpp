@@ -15,7 +15,7 @@ Form::Form(const std::string name, const int requiredGradeToSign,
     throw GradeTooLowException();
   }
 
-  std::cout << O_YELLOW << "Created Form successfully\n" << O_RESET;
+  std::cout << O_YELLOW << "Created Form successfully\n " << *this << O_RESET;
 }
 
 Form::~Form() {}
@@ -34,19 +34,20 @@ void Form::beSigned(const Bureaucrat &Bureaucrat) {
 }
 
 const char *Form::GradeTooHighException::what() const throw() {
-  return "Grade is too high to get signed";
+  return "Too high to sign/execute this form";
 }
 
 const char *Form::GradeTooLowException::what() const throw() {
-  return "Grade is too low to get signed";
+  return "Too low to sign/execute this form";
 }
 
 std::ostream &operator<<(std::ostream &o, const Form &rhs) {
-  o << "================================="
-    << "Form: " << rhs.getName() << '\n'
-    << "Grade to sign: " << rhs.getRequiredGradeToSign() << '\n'
-    << "Grade to execute: " << rhs.getRequiredGradeToExecute() << '\n'
-    << "Signed: " << rhs.getIsSigned();
+  o << "-------------------------------------------\n"
+    << "|Form:             |" << rhs.getName() << '\n'
+    << "|Grade to sign:    |" << rhs.getRequiredGradeToSign() << '\n'
+    << "|Grade to execute: |" << rhs.getRequiredGradeToExecute() << '\n'
+    << "|Signed:           |" << (rhs.getIsSigned() ? "Yes" : "No") << '\n'
+    << "-------------------------------------------\n";
 
   return o;
 }

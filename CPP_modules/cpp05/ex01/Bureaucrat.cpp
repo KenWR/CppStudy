@@ -8,7 +8,7 @@
 Bureaucrat::Bureaucrat(const std::string &name, const int grade)
     : name_(name), grade_(grade) {
   validateGrade(grade_);
-  std::cout << O_YELLOW << "Created Bureaucrats successfully\n" << O_RESET;
+  std::cout << O_YELLOW << "Created " << *this << " successfully\n" << O_RESET;
 }
 
 Bureaucrat::~Bureaucrat() {}
@@ -47,12 +47,19 @@ void Bureaucrat::validateGrade(int grade) const {
   }
 }
 
-void Bureaucrat::signForm(const Form &form) {
+void Bureaucrat::signForm(Form &form) {
   if (form.getIsSigned()) {
-    std::cout << *this << " signed " << form;
-  } else {
     std::cout << *this << " couldn’t sign " << form
               << " because the form is already signed\n";
+    return;
+  }
+
+  try {
+    form.beSigned(*this);
+    std::cout << *this << " signed\n" << form << '\n';
+  } catch (const GradeTooHighException &e) {
+    std::cout << *this << " couldn't sign\n"
+              << form << " because " << e.what() << '\n';
   }
 }
 
