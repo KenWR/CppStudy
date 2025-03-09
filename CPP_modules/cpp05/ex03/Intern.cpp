@@ -18,6 +18,10 @@ Intern::Intern() {}
 
 Intern::~Intern() {}
 
+/**
+ * @brief Create a form
+ * @todo Need to implement Prototype pattern
+ */
 AForm *Intern::makeForm(const std::string &formName,
                         const std::string &target) {
   if (formMap_.find(formName) != formMap_.end()) {
