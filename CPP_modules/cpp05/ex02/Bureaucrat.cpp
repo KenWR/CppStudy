@@ -2,8 +2,8 @@
 
 #include <iostream>
 
-#include "Config.hpp"
 #include "AForm.hpp"
+#include "Config.hpp"
 
 Bureaucrat::Bureaucrat(const std::string &name, const int grade)
     : name_(name), grade_(grade) {
