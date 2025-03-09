@@ -1,8 +1,8 @@
-SRCS = main.cpp
-INCLUDES = 
+SRCS = main.cpp Bureaucrat.cpp AForm.cpp ShrubberyCreationForm.cpp RobotomyRequestForm.cpp PresidentialPardonForm.cpp
+INCLUDES = Bureaucrat.hpp AForm.hpp ShrubberyCreationForm.hpp RobotomyRequestForm.hpp PresidentialPardonForm.hpp
 OBJS = $(SRCS:.cpp=.o)
 
-NAME = 
+NAME = execute
 CC = c++
 FLAG = -Wall -Wextra -Werror -std=c++98
 
