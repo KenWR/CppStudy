@@ -43,7 +43,7 @@ const char *AForm::GradeTooLowException::what() const throw() {
 
 std::ostream &operator<<(std::ostream &o, const AForm &rhs) {
   o << "-------------------------------------------\n"
-    << "|AForm:             |" << rhs.getName() << '\n'
+    << "|AForm:            |" << rhs.getName() << '\n'
     << "|Grade to sign:    |" << rhs.getRequiredGradeToSign() << '\n'
     << "|Grade to execute: |" << rhs.getRequiredGradeToExecute() << '\n'
     << "|Signed:           |" << (rhs.getIsSigned() ? "Yes" : "No") << '\n'
