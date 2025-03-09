@@ -51,6 +51,8 @@ Bureaucrat 클래스에 `executeForm(AForm const & form)` 멤버 함수를 추�
 `virtual execute(Bureaucrat const & executor) const = 0`
 
 3개의 concrete 클래스들은 모두 AForm 클래스를 상속받고 위의 순수 가상 함수를 각자의 동작에 맞게 구현하면 된다.    
+문제는 Base Form에서 예외를 처리하게 두어야 한다면 `execute(Bureaucrat const & executor) const` 멤버 함수는 순수 가상 함수가 되지 못한다.   
+그렇게 되면 AForm 이라는 추상 클래스의 이름에 어긋나므로 따로 `executeForm()` 이라는 순수 가상 함수를 `execute()` 함수 내에서 호출하도록 하고, `executeForm()` 함수를 오버라이딩 하도록 구현한다.
 
 외에는 전부 작성된 대로 구현하면 된다.   
 
