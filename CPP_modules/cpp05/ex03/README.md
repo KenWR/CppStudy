@@ -1,7 +1,7 @@
 ## INDEX
 
 - [ex03](#ex03)
-	- [Description](#description)
+  - [Description](#description)
 
 ---
 # ex03
@@ -35,7 +35,7 @@ feature: Form 클래스 생성
 output: Intern creates <form>   
 
 ```cpp
-class NoNameExistForm : public std::exception {
+class FormNotFoundException : public std::exception {
 	public:
 		virtual const char *what() const throw;
 }
