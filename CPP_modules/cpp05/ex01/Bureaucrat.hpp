@@ -6,6 +6,13 @@
 class Form;
 
 class Bureaucrat {
+private:
+  const std::string name_;
+  int grade_; // 1 to 150, 1 is the highest grade, 150 is the lowest
+
+  Bureaucrat(const Bureaucrat &rhs);
+  Bureaucrat &operator=(const Bureaucrat &rhs);
+
 public:
   static const int kHighestGrade_ = 1;
   static const int kLowestGrade_ = 150;
@@ -35,13 +42,6 @@ public:
   public:
     virtual const char *what() const throw();
   };
-
-private:
-  const std::string name_;
-  int grade_; // 1 to 150, 1 is the highest grade, 150 is the lowest
-
-  Bureaucrat(const Bureaucrat &rhs);
-  Bureaucrat &operator=(const Bureaucrat &rhs);
 };
 
 std::ostream &operator<<(std::ostream &o, const Bureaucrat &rhs);

@@ -6,41 +6,40 @@
 
 class Bureaucrat;
 
-class Form
-{
+class Form {
+private:
+  const std::string name_;           // A constant name
+  const int requiredGradeToSign_;    // A constant grade required to sign it.
+  const int requiredGradeToExecute_; // A constant grade required to execute it.
+  bool isSigned_; // A boolean indicating whether it is signed (at construction,
+                  // it’s not).
+
+  Form(const Form &rhs);
+  Form &operator=(const Form &rhs);
+
+public:
+  Form(const std::string name, const int requiredGradeToSign,
+       const int requiredGradeToExecute);
+  ~Form();
+
+  // getters
+  std::string getName() const;
+  int getRequiredGradeToSign() const;
+  int getRequiredGradeToExecute() const;
+  bool getIsSigned() const;
+
+  // member functions
+  void beSigned(const Bureaucrat &Bureaucrat);
+
+  class GradeTooHighException : public std::exception {
   public:
-    Form(const std::string name, const int requiredGradeToSign, const int requiredGradeToExecute);
-    ~Form();
+    virtual const char *what() const throw();
+  };
 
-    // getters
-    std::string getName() const;
-    int getRequiredGradeToSign() const;
-    int getRequiredGradeToExecute() const;
-    bool getIsSigned() const;
-
-    // member functions
-    void beSigned(const Bureaucrat &Bureaucrat);
-
-    class GradeTooHighException : public std::exception
-    {
-      public:
-        virtual const char *what() const throw();
-    };
-
-    class GradeTooLowException : public std::exception
-    {
-      public:
-        virtual const char *what() const throw();
-    };
-
-  private:
-    const std::string name_;           // A constant name
-    const int requiredGradeToSign_;    // A constant grade required to sign it.
-    const int requiredGradeToExecute_; // A constant grade required to execute it.
-    bool isSigned_;                    // A boolean indicating whether it is signed (at construction, it’s not).
-
-    Form(const Form &rhs);
-    Form &operator=(const Form &rhs);
+  class GradeTooLowException : public std::exception {
+  public:
+    virtual const char *what() const throw();
+  };
 };
 
 std::ostream &operator<<(std::ostream &o, const Form &rhs);
