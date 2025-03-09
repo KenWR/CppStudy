@@ -3,9 +3,16 @@
 
 #include <string>
 
-class Form;
+class AForm;
 
 class Bureaucrat {
+private:
+  const std::string name_;
+  int grade_; // 1 to 150, 1 is the highest grade, 150 is the lowest
+
+  Bureaucrat(const Bureaucrat &rhs);
+  Bureaucrat &operator=(const Bureaucrat &rhs);
+
 public:
   static const int kHighestGrade_ = 1;
   static const int kLowestGrade_ = 150;
@@ -25,6 +32,7 @@ public:
   void decrementGrade();
   void validateGrade(int grade) const;
   void signForm(AForm &form);
+  void executeForm(const AForm &form);
 
   // exceptions
   class GradeTooHighException : public std::exception {
@@ -35,13 +43,6 @@ public:
   public:
     virtual const char *what() const throw();
   };
-
-private:
-  const std::string name_;
-  int grade_; // 1 to 150, 1 is the highest grade, 150 is the lowest
-
-  Bureaucrat(const Bureaucrat &rhs);
-  Bureaucrat &operator=(const Bureaucrat &rhs);
 };
 
 std::ostream &operator<<(std::ostream &o, const Bureaucrat &rhs);
