@@ -30,3 +30,7 @@ void RobotomyRequestForm::executeConcrete() const {
     std::cout << "Failed to robotomize " << target_ << '\n';
   }
 }
+
+AForm *RobotomyRequestForm::create(const std::string &target) const {
+  return new RobotomyRequestForm(target);
+}

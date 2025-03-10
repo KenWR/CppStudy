@@ -17,6 +17,9 @@ public:
 
   void executeConcrete() const;
 
+  // factory pattern
+  AForm *create(const std::string &target) const;
+
 private:
   const std::string target_;
 

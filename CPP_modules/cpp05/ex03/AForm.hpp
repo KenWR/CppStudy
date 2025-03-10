@@ -35,6 +35,9 @@ public:
   void beSigned(const Bureaucrat &Bureaucrat);
   void execute(const Bureaucrat &executor) const;
 
+  // factory pattern
+  virtual AForm *create(const std::string &target) const = 0;
+
   class GradeTooHighException : public std::exception {
   public:
     virtual const char *what() const throw();
