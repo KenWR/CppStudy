@@ -23,7 +23,7 @@ protected:
 public:
   AForm(const std::string name, const int requiredGradeToSign,
         const int requiredGradeToExecute);
-  ~AForm();
+  virtual ~AForm();
 
   // getters
   std::string getName() const;
