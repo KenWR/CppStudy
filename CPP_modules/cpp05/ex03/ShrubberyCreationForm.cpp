@@ -55,7 +55,7 @@ void ShrubberyCreationForm::executeConcrete() const {
        << "                               ;%@@@@%%:;;;. \n"
        << "                           ...;%@@@@@%%:;;;;,..  \n";
 
-  std::cout << O_YELLOW << "Shrubbery has been created\n" << O_RESET;
+  std::cout << O_YELLOW << "Shrubbery has been created\n\n" << O_RESET;
 }
 
 AForm *ShrubberyCreationForm::create(const std::string &target) const {

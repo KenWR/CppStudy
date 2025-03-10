@@ -25,8 +25,8 @@ void RobotomyRequestForm::executeConcrete() const {
 
   std::srand(std::time(NULL));
   if (std::rand() % 2) {
-    std::cout << target_ << " has been robotomized successfully\n";
+    std::cout << target_ << " has been robotomized successfully\n\n";
   } else {
-    std::cout << "Failed to robotomize " << target_ << '\n';
+    std::cout << "Failed to robotomize " << target_ << "\n\n";
   }
 }

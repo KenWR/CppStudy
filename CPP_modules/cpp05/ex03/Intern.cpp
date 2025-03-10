@@ -30,7 +30,7 @@ AForm *Intern::makeForm(const std::string &formName,
                         const std::string &target) {
   if (formMap_.find(formName) != formMap_.end()) {
     AForm *newForm = formMap_[formName]->create(target);
-    std::cout << "Intern creates\n" << newForm;
+    std::cout << "Intern creates\n" << newForm << '\n';
     return newForm;
   } else {
     throw FormNotFoundException();

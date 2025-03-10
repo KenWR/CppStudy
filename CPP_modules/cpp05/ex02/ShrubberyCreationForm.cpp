@@ -22,7 +22,7 @@ void ShrubberyCreationForm::executeConcrete() const {
   std::ofstream file((target_ + "_shrubbery").c_str(), std::ios::trunc);
 
   if (!file.is_open()) {
-    std::cerr << "Failed to open file\n";
+    std::cerr << "Failed to open file\n\n";
     return;
   }
 
@@ -55,5 +55,5 @@ void ShrubberyCreationForm::executeConcrete() const {
        << "                               ;%@@@@%%:;;;. \n"
        << "                           ...;%@@@@@%%:;;;;,..  \n";
 
-  std::cout << O_YELLOW << "Shrubbery has been created\n" << O_RESET;
+  std::cout << O_YELLOW << "Shrubbery has been created\n\n" << O_RESET;
 }

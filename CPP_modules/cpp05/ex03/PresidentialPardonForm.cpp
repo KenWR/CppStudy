@@ -21,7 +21,7 @@ PresidentialPardonForm::~PresidentialPardonForm() {}
 const std::string &PresidentialPardonForm::getTarget() const { return target_; }
 
 void PresidentialPardonForm::executeConcrete() const {
-  std::cout << target_ << " has been pardoned by Zafod Beeblebrox\n";
+  std::cout << target_ << " has been pardoned by Zafod Beeblebrox\n\n";
 }
 
 AForm *PresidentialPardonForm::create(const std::string &target) const {

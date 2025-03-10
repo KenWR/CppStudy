@@ -23,7 +23,7 @@ int main() {
     Bureaucrat trump("President", 1);
     Intern intern;
 
-    std::cout << O_BOLD << "========================================\n"
+    std::cout << O_BOLD << "========================================\n\n"
               << O_RESET;
 
     std::cout << O_BOLD << "============= Forms =============\n" << O_RESET;
@@ -31,14 +31,14 @@ int main() {
     shrubberyCreation = intern.makeForm("ShrubberyCreationForm", "home");
     robotomyRequest = intern.makeForm("RobotomyRequestForm", "Jack");
     presidentialPardon = intern.makeForm("PresidentialPardonForm", "Jack");
-    std::cout << O_BOLD << "========================================\n"
+    std::cout << O_BOLD << "========================================\n\n"
               << O_RESET;
 
     std::cout << O_BOLD << "============= Sign form =============\n" << O_RESET;
     trump.signForm(*shrubberyCreation);
     trump.signForm(*robotomyRequest);
     trump.signForm(*presidentialPardon);
-    std::cout << O_BOLD << "========================================\n"
+    std::cout << O_BOLD << "========================================\n\n"
               << O_RESET;
 
     std::cout << O_BOLD << "============= Execute form =============\n"
@@ -46,13 +46,13 @@ int main() {
     trump.executeForm(*shrubberyCreation);
     trump.executeForm(*robotomyRequest);
     trump.executeForm(*presidentialPardon);
-    std::cout << O_BOLD << "========================================\n"
+    std::cout << O_BOLD << "========================================\n\n"
               << O_RESET;
 
     std::cout << O_BOLD << "============= Create wrong form =============\n"
               << O_RESET;
     wrongForm = intern.makeForm("worng name", "Jack");
-    std::cout << O_BOLD << "========================================\n"
+    std::cout << O_BOLD << "========================================\n\n"
               << O_RESET;
 
   } catch (std::exception &e) {

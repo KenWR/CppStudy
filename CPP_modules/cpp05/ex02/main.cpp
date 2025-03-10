@@ -21,7 +21,7 @@ int main() {
     Bureaucrat trump("President", 1);
     Bureaucrat elon("minister", 30);
     Bureaucrat bob("clerk", 150);
-    std::cout << O_BOLD << "========================================\n"
+    std::cout << O_BOLD << "========================================\n\n"
               << O_RESET;
 
     std::cout << O_BOLD << "============= Forms =============\n" << O_RESET;
@@ -29,7 +29,7 @@ int main() {
     shrubbery_creation = new ShrubberyCreationForm("home");
     robotomy_request = new RobotomyRequestForm("Jack");
     presidential_pardon = new PresidentialPardonForm("Jack");
-    std::cout << O_BOLD << "========================================\n"
+    std::cout << O_BOLD << "========================================\n\n"
               << O_RESET;
 
     std::cout << O_BOLD << "============= Not signed =============\n"
@@ -37,14 +37,14 @@ int main() {
     trump.executeForm(*shrubbery_creation);
     elon.executeForm(*robotomy_request);
     bob.executeForm(*presidential_pardon);
-    std::cout << O_BOLD << "========================================\n"
+    std::cout << O_BOLD << "========================================\n\n"
               << O_RESET;
 
     std::cout << O_BOLD << "============= Sign form =============\n" << O_RESET;
     trump.signForm(*shrubbery_creation);
     elon.signForm(*robotomy_request);
     bob.signForm(*presidential_pardon);
-    std::cout << O_BOLD << "========================================\n"
+    std::cout << O_BOLD << "========================================\n\n"
               << O_RESET;
 
     std::cout << O_BOLD << "============= Execute form =============\n"
@@ -52,7 +52,7 @@ int main() {
     trump.executeForm(*shrubbery_creation);
     elon.executeForm(*robotomy_request);
     bob.executeForm(*presidential_pardon);
-    std::cout << O_BOLD << "========================================\n"
+    std::cout << O_BOLD << "========================================\n\n"
               << O_RESET;
 
   } catch (std::exception &e) {
