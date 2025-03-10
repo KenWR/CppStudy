@@ -8,24 +8,30 @@
 #include <iostream>
 #include <string>
 
-static const std::map<std::string, AForm> formMap_ = {
-    {"ShrubberyCreation", ShrubberyCreationForm("target")},
-    {"RobotomyRequest", RobotomyRequestForm("target")},
-    {"PresidentialPardon", PresidentialPardonForm("target")},
-};
+std::map<std::string, AForm *> Intern::formMap_;
 
-Intern::Intern() {}
+Intern::Intern() {
+  if (formMap_.empty() == true) {
+    formMap_["PresidentialPardonForm"] = new PresidentialPardonForm("target");
+    formMap_["RobotomyRequestForm"] = new RobotomyRequestForm("target");
+    formMap_["ShrubberyCreationForm"] = new ShrubberyCreationForm("target");
+  }
+}
 
-Intern::~Intern() {}
+Intern::~Intern() {
+  if (formMap_.empty() == false) {
+    delete formMap_["PresidentialPardonForm"];
+    delete formMap_["RobotomyRequestForm"];
+    delete formMap_["ShrubberyCreationForm"];
+  }
+}
 
-/**
- * @brief Create a form
- * @todo Need to implement Prototype pattern
- */
 AForm *Intern::makeForm(const std::string &formName,
                         const std::string &target) {
   if (formMap_.find(formName) != formMap_.end()) {
-    return new formMap_[formName];
+    AForm *newForm = formMap_[formName]->create(target);
+    std::cout << "Intern creates\n" << newForm;
+    return newForm;
   } else {
     throw FormNotFoundException();
   }

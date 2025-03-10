@@ -5,14 +5,11 @@
 #include <string>
 
 class AForm;
-class PresidentialPardonForm;
-class RobotomyRequestForm;
-class ShrubberyCreationForm;
 
 class Intern {
 private:
-  static const std::map<std::string, AForm > formMap_;
-  
+  static std::map<std::string, AForm *> formMap_;
+
   Intern(const Intern &);
   Intern &operator=(const Intern &);
 
