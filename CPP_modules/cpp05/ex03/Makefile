@@ -2,7 +2,7 @@ SRCS = main.cpp Bureaucrat.cpp AForm.cpp ShrubberyCreationForm.cpp RobotomyReque
 INCLUDES = Bureaucrat.hpp AForm.hpp ShrubberyCreationForm.hpp RobotomyRequestForm.hpp PresidentialPardonForm.hpp Intern.hpp
 OBJS = $(SRCS:.cpp=.o)
 
-NAME = execute
+NAME = intern
 CC = c++
 FLAG = -Wall -Wextra -Werror -std=c++98
 
