@@ -28,3 +28,7 @@ Input Data Pointer → serialize()
 Output Data Pointer ← deserialize()
 ```
 
+**Solution:**   
+reinterpret_cast 를 사용하는 문제다.
+reinterpret_cast는 인자로 받은 타입을 그대로 유지하면서, 원래의 비트 패턴을 새로운 타입으로 해석하도록 하는 캐스팅 연산자이다.   
+메모리 해석 방식만 변경되며, 데이터 자체는 변형되지 않는다.   
