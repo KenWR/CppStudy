@@ -3,7 +3,7 @@ HEADERS = Serializer.hpp
 INCLUDES = .
 OBJS = $(SRCS:.cpp=.o)
 
-NAME = serializer
+NAME = reinterpret
 CC = c++
 FLAG = -Wall -Wextra -Werror -std=c++98
 
