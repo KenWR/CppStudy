@@ -1,0 +1,7 @@
+Language: Cpp
+BasedOnStyle: LLVM
+
+AlwaysBreakTemplateDeclarations: Yes
+
+BraceWrapping:
+  AfterClass: true
