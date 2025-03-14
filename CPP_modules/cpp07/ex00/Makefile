@@ -1,4 +1,4 @@
-SRCS = main.cpp ft_utility.cpp
+SRCS = main.cpp
 HEADERS = ft_utility.hpp
 INCLUDES = .
 OBJS = $(SRCS:.cpp=.o)
