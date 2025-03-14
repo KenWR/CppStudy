@@ -13,7 +13,7 @@ int main() {
 
     copiedArr = originalArr;
     for (size_t i = 0; i < originalArr.size(); ++i) {
-      originalArr[i] = "abcde" + i;
+      originalArr[i] = "abcde"[i];
       if (i == originalArr.size() / 2) {
         copiedArr = originalArr;
       }
@@ -55,7 +55,7 @@ int main() {
   {
     Array<std::string> *pointerArr = new Array<std::string>(3);
     for (size_t i = 0; i < pointerArr->size(); ++i) {
-      (*pointerArr)[i] = "abcde" + i;
+      (*pointerArr)[i] = "abcde"[i];
       std::cout << (*pointerArr)[i] << '\n';
     }
     delete pointerArr;
