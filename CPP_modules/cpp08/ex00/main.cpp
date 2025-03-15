@@ -29,4 +29,8 @@ int main() {
   std::deque<int>::const_iterator constDeqIter = ft::easyfind(deq, 3);
   std::cout << *deqIter << '\n';
   std::cout << *constDeqIter << '\n';
+
+  const std::vector<int> constVec(vec);
+  std::vector<int>::const_iterator constVecIter2 = ft::easyfind(constVec, 4);
+  std::cout << *constVecIter2 << '\n';
 }
