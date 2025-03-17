@@ -1,9 +1,9 @@
-SRCS = main.cpp
-HEADERS = easyfind.hpp
+SRCS = main.cpp Span.cpp
+HEADERS = Span.hpp
 INCLUDES = .
 OBJS = $(SRCS:.cpp=.o)
 
-NAME = easyfind
+NAME = span
 CC = c++
 FLAG = -Wall -Wextra -Werror -std=c++98
 
