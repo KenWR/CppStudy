@@ -9,11 +9,11 @@ Span::Span(unsigned int n) : max_size_(n) {}
 Span::~Span() {}
 
 void Span::addNumber(int number) {
-  if (numbers_.size() < max_size_) {
-    numbers_.push_back(number);
-  } else {
+  if (numbers_.size() >= max_size_) {
     throw Span::NoSpaceException();
   }
+
+  numbers_.push_back(number);
 }
 
 int Span::shortestSpan() const {
