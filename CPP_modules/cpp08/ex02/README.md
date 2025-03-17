@@ -65,9 +65,40 @@ int main()
 
 **Solution:**
 
+자, 그러면 stack 을 살펴보자.    
+
+```c++
+_STD_BEGIN
+_EXPORT_STD template <class _Ty, class _Container = deque<_Ty>>
+class stack {
+public:
+    using value_type      = typename _Container::value_type;
+    using reference       = typename _Container::reference;
+    using const_reference = typename _Container::const_reference;
+    using size_type       = typename _Container::size_type;
+    using container_type  = _Container;
+
+    static_assert(is_same_v<_Ty, value_type>, "container adaptors require consistent types");
+    static_assert(is_object_v<_Ty>, "The C++ Standard forbids container adaptors of non-object types "
+                                    "because of [container.requirements].");
+
+// ...
+// ...
+// ...
+
+protected:
+    _Container c{};
+};
+```   
+
 stack은 기존의 컨테이너(`std::deque`)를 기반으로 동작하는 `Container Adapter`이다.   
 그렇기에 직접 반복자를 제공하지 않는다.    
 
 `Container Adapter`는 특정 목적에 맞게 사용하기 쉽게 만든 컨테이너로 `std::stack`은 LIFO를 보장함과 동시에 사용하기 쉽게 설계된 어댑터이다.   
 
-이러한 컨테이너 어댑터에 반복자를 추가함으로서 `std::list` 와 같은 반복자를 사용하는 다른 컨테이너 처럼 동작할 수 있어야 한다는 것이다.   
+이러한 컨테이너 어댑터에 반복자를 추가함으로서 `std::list` 와 같은 반복자를 사용하는 다른 컨테이너 처럼 동작할 수 있어야 한다는 것이다. 
+
+
+맨 밑을 보면 `deque` 컨테이너를 `protected`로 선언되어 있는 것을 볼 수 있다.    
+`std::stack`을 상속받는 우리에겐 해당 컨테이너를 접근할 수 있는 권한이 주어진 셈이다.   
+우리가 할 일은 해당컨테이너의 `iterator(반복자)`를 꺼내어 외부에서 접근이 가능하게 만들면 될 뿐이다.
