@@ -14,8 +14,8 @@ private:
   PmergeMe &operator=(const PmergeMe &);
 
 public:
-  void MergeInsertionSortVector(std::vector<int> &vec);
-  void MergeInsertionSortList(std::list<int> &lst);
+  static void MergeInsertionSortVector(std::vector<int> &vec);
+  static void MergeInsertionSortList(std::list<int> &lst);
 };
 
 #endif // PmergeMe
