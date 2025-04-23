@@ -1,7 +1,7 @@
 #include "PmergeMe.hpp"
 
+#include <ctime>
 #include <iostream>
-
 #include <list>
 #include <vector>
 
@@ -24,10 +24,16 @@ int main(int argc, char **argv) {
   }
 
   PrintContainer(vec);
-  PrintContainer(lst);
+  // std::cout << std::time(nullptr) << '\n';
   PmergeMe::MergeInsertionSortVector(vec);
-  PmergeMe::MergeInsertionSortList(lst);
+  // std::cout << std::time(nullptr) << '\n';
   PrintContainer(vec);
+  PmergeMe::PrintComaprison();
+
+  PrintContainer(lst);
+  // std::cout << std::time(nullptr) << '\n';
+  PmergeMe::MergeInsertionSortList(lst);
+  // std::cout << std::time(nullptr) << '\n';
   PrintContainer(lst);
 }
 
