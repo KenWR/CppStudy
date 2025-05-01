@@ -25,7 +25,7 @@ int PmergeMe::comparison_ = 0;
 void PmergeMe::MergeInsertionSortVector(std::vector<int> &vec) {
   std::vector<std::pair<int, int> > chained;
   int lefted = -1;
-  if (vec.size() % 2) {
+  if (vec.size() % 2 && vec.size() > 1) {
     lefted = vec.back();
   }
   for (size_t i = 0; i + 1 < vec.size(); i += 2) {
@@ -104,11 +104,15 @@ static void BinaryInsertionVector(std::vector<int> &vec, int value) {
   vec.insert(vec.begin() + left, value);
 }
 
+int getOrderForLowestComparison() {
+  
+}
+
 // List
 void PmergeMe::MergeInsertionSortList(std::list<int> &lst) {
   std::list<std::pair<int, int> > chained;
   int lefted = -1;
-  if (lst.size() % 2) {
+  if (lst.size() % 2 && lst.size() > 1) {
     lefted = lst.back();
   }
   std::list<int>::iterator iter = lst.begin();
