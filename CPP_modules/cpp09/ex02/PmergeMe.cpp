@@ -8,8 +8,8 @@
 #include <vector>
 
 // clang-format off
-static void BinaryInsertionVector(std::vector<int> &vec, int value);
-static void BinaryInsertionList(std::list<int> &lst, int value);
+static void BinaryInsertionVector(std::vector<int> &vec, int value, int left, int right);
+static void BinaryInsertionList(std::list<int> &lst, int value, int left, int right);
 static void MergeSortVector(std::vector<std::pair<int, int> > &vec, int left,
                             int right);
 static void MergeSortList(std::list<std::pair<int, int> > &lst, int left,
@@ -18,6 +18,7 @@ static void MergeVector(std::vector<std::pair<int, int> > &vec, int left,
                         int mid, int right);
 static void MergeList(std::list<std::pair<int, int> > &lst, int left, int mid,
                       int right);
+int getHighestIndexForLowestComparison(int k);
 
 int PmergeMe::comparison_ = 0;
 
@@ -31,20 +32,44 @@ void PmergeMe::MergeInsertionSortVector(std::vector<int> &vec) {
   for (size_t i = 0; i + 1 < vec.size(); i += 2) {
     if (vec[i] > vec[i + 1]) {
       chained.push_back(std::make_pair(vec[i], vec[i + 1]));
-      PmergeMe::IncreaseComparison();
     } else {
       chained.push_back(std::make_pair(vec[i + 1], vec[i]));
-      PmergeMe::IncreaseComparison();
     }
   }
   MergeSortVector(chained, 0, chained.size() - 1);
+
+  // binary search insert is start
   vec.clear();
-  for (size_t i = 0; i < chained.size(); ++i) {
-    BinaryInsertionVector(vec, chained[i].second);
+  for (int i = 0; i < chained.size(); ++i) {
     vec.push_back(chained[i].first);
   }
+
+  int index = 0, before = -1;
+  int current, temp;
+  bool flag = false;
+  while (true) {
+    current = getHighestIndexForLowestComparison(index);
+    if (current >= chained.size()) {
+      temp = chained.size() - 1;
+      if (before == current) {
+        break;
+      }
+    } else {
+      temp = current;
+    }
+
+    while (temp > before) {
+      BinaryInsertionVector(vec, chained[temp].second, 0, index * 2 - 1);
+      temp--;
+    }
+    if (current >= chained.size() && temp <= before) {
+      break;
+    }
+    before = current;
+    index++;
+  }
   if (lefted != -1) {
-    BinaryInsertionVector(vec, lefted);
+    BinaryInsertionVector(vec, lefted, 0, vec.size() - 1);
   }
 }
 
@@ -71,7 +96,6 @@ static void MergeVector(std::vector<std::pair<int, int> > &vec, int left,
     } else {
       vec_temp.push_back(vec[index_right++]);
     }
-    PmergeMe::IncreaseComparison();
   }
 
   while (index_left <= mid) {
@@ -86,26 +110,18 @@ static void MergeVector(std::vector<std::pair<int, int> > &vec, int left,
   }
 }
 
-static void BinaryInsertionVector(std::vector<int> &vec, int value) {
-  int left = 0;
-  int right = vec.size() - 1;
+static void BinaryInsertionVector(std::vector<int> &vec, int value, int left, int right) {
   int mid = (left + right) / 2;
 
   while (left <= right) {
     if (vec[mid] <= value) {
       left = mid + 1;
-      PmergeMe::IncreaseComparison();
     } else {
       right = mid - 1;
-      PmergeMe::IncreaseComparison();
     }
     mid = (left + right) / 2;
   }
   vec.insert(vec.begin() + left, value);
-}
-
-int getOrderForLowestComparison() {
-  
 }
 
 // List
@@ -131,12 +147,12 @@ void PmergeMe::MergeInsertionSortList(std::list<int> &lst) {
   lst.clear();
   std::list<std::pair<int, int> >::iterator iter_chained = chained.begin();
   for (size_t i = 0; i < chained.size(); ++i) {
-    BinaryInsertionList(lst, (*iter_chained).second);
+    BinaryInsertionList(lst, (*iter_chained).second, 0, lst.size() - 1);
     lst.push_back((*iter_chained).first);
     iter_chained++;
   }
   if (lefted != -1) {
-    BinaryInsertionList(lst, lefted);
+    BinaryInsertionList(lst, lefted, 0, lst.size() - 1);
   }
 }
 
@@ -193,9 +209,7 @@ static void MergeList(std::list<std::pair<int, int> > &lst, int left, int mid,
   }
 }
 
-static void BinaryInsertionList(std::list<int> &lst, int value) {
-  int left = 0;
-  int right = lst.size() - 1;
+static void BinaryInsertionList(std::list<int> &lst, int value, int left, int right) {
   int mid = (left + right) / 2;
 
   while (left <= right) {
@@ -219,6 +233,21 @@ void PmergeMe::IncreaseComparison() {
 
 void PmergeMe::PrintComaprison() {
   std::cout << "comparison: " << comparison_ << "\n";
+}
+
+int getHighestIndexForLowestComparison(int k) {
+  if (k == 0) {
+    return 0;
+  }
+  
+  int order;
+  if (k % 2) {
+    order = ((1 << (k + 1)) - 1) / 3;
+  } else {
+    order = ((1 << (k + 1)) + 1) / 3;
+  }
+
+  return order;
 }
 
 // clang-format on
