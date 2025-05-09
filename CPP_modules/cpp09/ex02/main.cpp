@@ -1,17 +1,28 @@
 #include "PmergeMe.hpp"
 
 #include <ctime>
+#include <iomanip>
 #include <iostream>
 #include <list>
 #include <vector>
+#include <sys/time.h>
+
+struct ElapsedTime {
+  long seconds;
+  long milliseconds;
+  long microseconds;
+};
 
 bool IsPositiveSequence(const std::vector<int> &vec);
 void PrintContainer(const std::vector<int> &vec);
 void PrintContainer(const std::list<int> &lst);
+ElapsedTime GetTimeBreakdown(timeval &start, timeval &end);
 
 int main(int argc, char **argv) {
   std::vector<int> vec;
   std::list<int> lst;
+  timeval start, end;
+  ElapsedTime elapsed;
 
   for (int i = 1; i < argc; ++i) {
     int number = atoi(argv[i]);
@@ -23,18 +34,35 @@ int main(int argc, char **argv) {
     std::cerr << "Input numbers are not positive integer sequence\n";
   }
 
+  std::cout << "before: ";
   PrintContainer(vec);
-  // std::cout << std::time(nullptr) << '\n';
+  gettimeofday(&start, NULL);
   PmergeMe::MergeInsertionSortVector(vec);
-  // std::cout << std::time(nullptr) << '\n';
+  gettimeofday(&end, NULL);
+  std::cout << "after: ";
   PrintContainer(vec);
-  PmergeMe::PrintComaprison();
 
+  elapsed = GetTimeBreakdown(start, end);
+  std::cout << "Time to process a range of " << vec.size() << " elements with std::vector: "
+            << elapsed.seconds << " s " 
+            << elapsed.milliseconds << " ms "
+            << elapsed.microseconds << " us\n";
+  // PmergeMe::PrintComaprison();
+
+  std::cout << "before: ";
   PrintContainer(lst);
-  // std::cout << std::time(nullptr) << '\n';
+  gettimeofday(&start, NULL);
   PmergeMe::MergeInsertionSortList(lst);
-  // std::cout << std::time(nullptr) << '\n';
+  gettimeofday(&end, NULL);
+  std::cout << "after: ";
   PrintContainer(lst);
+
+  elapsed = GetTimeBreakdown(start, end);
+  std::cout << "Time to process a range of " << vec.size() << " elements with std::list: "
+            << elapsed.seconds << " s " 
+            << elapsed.milliseconds << " ms "
+            << elapsed.microseconds << " us\n";
+  // PmergeMe::PrintComaprison();
 }
 
 // Tools
@@ -66,4 +94,21 @@ bool IsPositiveSequence(const std::vector<int> &vec) {
     }
   }
   return true;
+}
+
+ElapsedTime GetTimeBreakdown(timeval &start, timeval &end) {
+  long sec = end.tv_sec - start.tv_sec;
+  long usec = end.tv_usec - start.tv_usec;
+
+  if (usec < 0) {
+      sec -= 1;
+      usec += 1000000;
+  }
+
+  ElapsedTime result;
+  result.seconds = sec;
+  result.milliseconds = usec / 1000;             // 1 ms = 1000 us
+  result.microseconds = usec % 1000;             // 나머지 μs
+
+  return result;
 }
