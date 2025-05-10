@@ -8,17 +8,10 @@
 #include <vector>
 
 // clang-format off
+static void BinaryInsertionVector(std::vector<std::pair<int, int> > &vec, std::pair<int, int> &value, int left, int right);
 static void BinaryInsertionVector(std::vector<int> &vec, int value, int left, int right);
-static void BinaryInsertionList(std::list<int> &lst, int value, int left, int right);
-static void MergeSortVector(std::vector<std::pair<int, int> > &vec, int left,
-                            int right);
-static void MergeSortList(std::list<std::pair<int, int> > &lst, int left,
-                          int right);
-static void MergeVector(std::vector<std::pair<int, int> > &vec, int left,
-                        int mid, int right);
-static void MergeList(std::list<std::pair<int, int> > &lst, int left, int mid,
-                      int right);
-int getHighestIndexForLowestComparison(int k);
+// static void BinaryInsertionList(std::list<int> &lst, std::pair<int, int> &value, int left, int right);
+int GetHighestIndexForLowestComparison(int k);
 
 int PmergeMe::comparison_ = 0;
 
@@ -35,197 +28,131 @@ void PmergeMe::MergeInsertionSortVector(std::vector<int> &vec) {
     } else {
       chained.push_back(std::make_pair(vec[i + 1], vec[i]));
     }
+    PmergeMe::IncreaseComparison();
   }
-  MergeSortVector(chained, 0, chained.size() - 1);
-
-  // binary search insert is start
-  vec.clear();
-  for (int i = 0; i < chained.size(); ++i) {
-    vec.push_back(chained[i].first);
+  
+  std::vector<std::pair<int, int> > sorted;
+  for (size_t i = 0; i < chained.size(); ++i) {
+    BinaryInsertionVector(sorted, chained[i], 0, sorted.size() - 1);
   }
 
-  int index = 0, before = -1;
-  int current, temp;
-  bool flag = false;
-  while (true) {
-    current = getHighestIndexForLowestComparison(index);
-    if (current >= chained.size()) {
-      temp = chained.size() - 1;
-      if (before == current) {
-        break;
-      }
-    } else {
-      temp = current;
-    }
-
-    while (temp > before) {
-      BinaryInsertionVector(vec, chained[temp].second, 0, index * 2 - 1);
-      temp--;
-    }
-    if (current >= chained.size() && temp <= before) {
+  // ============= 여기가 수열 사용 ===========
+  std::vector<int> sequences;
+  for (size_t i = 0; ; ++i) {
+    int sequence = GetHighestIndexForLowestComparison(i);
+    if (sequence >= sorted.size()) {
+      sequence = sorted.size() - 1;
+      sequences.push_back(sequence);
       break;
     }
-    before = current;
-    index++;
+    sequences.push_back(sequence);
   }
+
+  vec.clear();
+  for (size_t i = 0; i < sorted.size(); ++i) {
+    vec.push_back(sorted[i].first);
+  }
+  vec.insert(vec.begin(), sorted.front().second);
+
+  int count = 1;
+  for (size_t i = 1; i < sequences.size(); ++i) {
+    int before = sequences[i - 1];
+    int current = sequences[i];
+    while (current > before) {
+      BinaryInsertionVector(vec, sorted[current].second, 0, (count * 2) - 1);
+      current--;
+      count++;
+    }
+    std::cout << "count: " << count *2 - 1<< '\n';
+  }
+  // ========================================
+
   if (lefted != -1) {
     BinaryInsertionVector(vec, lefted, 0, vec.size() - 1);
   }
 }
 
-static void MergeSortVector(std::vector<std::pair<int, int> > &vec, int left,
-                            int right) {
-  if (left >= right) {
-    return;
-  }
-  int mid = left + (right - left) / 2;
-  MergeSortVector(vec, left, mid);
-  MergeSortVector(vec, mid + 1, right);
-  MergeVector(vec, left, mid, right);
-}
+static void BinaryInsertionVector(std::vector<std::pair<int, int> > &vec, std::pair<int, int> &value, int left, int right) {
+  int mid = (left + right) / 2;
 
-static void MergeVector(std::vector<std::pair<int, int> > &vec, int left,
-                        int mid, int right) {
-  std::vector<std::pair<int, int> > vec_temp;
-
-  int index_left = left;
-  int index_right = mid + 1;
-  while (index_left <= mid && index_right <= right) {
-    if (vec[index_left].first < vec[index_right].first) {
-      vec_temp.push_back(vec[index_left++]);
+  while (left <= right) {
+    if (vec[mid].first <= value.first) {
+      left = mid + 1;
     } else {
-      vec_temp.push_back(vec[index_right++]);
+      right = mid - 1;
     }
+    mid = (left + right) / 2;
+    PmergeMe::IncreaseComparison();
   }
 
-  while (index_left <= mid) {
-    vec_temp.push_back(vec[index_left++]);
-  }
-  while (index_right <= right) {
-    vec_temp.push_back(vec[index_right++]);
-  }
-
-  for (size_t i = 0; i < vec_temp.size(); ++i) {
-    vec[left + i] = vec_temp[i];
-  }
+  vec.insert(vec.begin() + left, value);
 }
 
 static void BinaryInsertionVector(std::vector<int> &vec, int value, int left, int right) {
   int mid = (left + right) / 2;
 
   while (left <= right) {
-    if (vec[mid] <= value) {
+    if (vec[mid] < value) {
       left = mid + 1;
     } else {
       right = mid - 1;
     }
     mid = (left + right) / 2;
+    PmergeMe::IncreaseComparison();
   }
+
   vec.insert(vec.begin() + left, value);
 }
 
 // List
-void PmergeMe::MergeInsertionSortList(std::list<int> &lst) {
-  std::list<std::pair<int, int> > chained;
-  int lefted = -1;
-  if (lst.size() % 2 && lst.size() > 1) {
-    lefted = lst.back();
-  }
-  std::list<int>::iterator iter = lst.begin();
-  int n = lst.size() / 2;
-  for (int i = 0; i < n; ++i, ++iter) {
-    int value1 = *iter;
-    int value2 = *(++iter);
-    if (value1 > value2) {
-      chained.push_back(std::make_pair(value1, value2));
-    } else {
-      chained.push_back(std::make_pair(value2, value1));
-    }
-  }
-  std::list<std::pair<int, int> >::iterator itter = chained.begin();
-  MergeSortList(chained, 0, chained.size() - 1);
-  lst.clear();
-  std::list<std::pair<int, int> >::iterator iter_chained = chained.begin();
-  for (size_t i = 0; i < chained.size(); ++i) {
-    BinaryInsertionList(lst, (*iter_chained).second, 0, lst.size() - 1);
-    lst.push_back((*iter_chained).first);
-    iter_chained++;
-  }
-  if (lefted != -1) {
-    BinaryInsertionList(lst, lefted, 0, lst.size() - 1);
-  }
-}
+// void PmergeMe::MergeInsertionSortList(std::list<int> &lst) {
+//   std::list<std::pair<int, int> > chained;
+//   int lefted = -1;
+//   if (lst.size() % 2 && lst.size() > 1) {
+//     lefted = lst.back();
+//   }
+//   std::list<int>::iterator iter = lst.begin();
+//   int n = lst.size() / 2;
+//   for (int i = 0; i < n; ++i, ++iter) {
+//     int value1 = *iter;
+//     int value2 = *(++iter);
+//     if (value1 > value2) {
+//       chained.push_back(std::make_pair(value1, value2));
+//     } else {
+//       chained.push_back(std::make_pair(value2, value1));
+//     }
+//   }
+//   std::list<std::pair<int, int> >::iterator itter = chained.begin();
+//   MergeSortList(chained, 0, chained.size() - 1);
+//   lst.clear();
+//   std::list<std::pair<int, int> >::iterator iter_chained = chained.begin();
+//   for (size_t i = 0; i < chained.size(); ++i) {
+//     BinaryInsertionList(lst, (*iter_chained).second, 0, lst.size() - 1);
+//     lst.push_back((*iter_chained).first);
+//     iter_chained++;
+//   }
+//   if (lefted != -1) {
+//     BinaryInsertionList(lst, lefted, 0, lst.size() - 1);
+//   }
+// }
 
-static void MergeSortList(std::list<std::pair<int, int> > &lst, int left,
-                          int right) {
-  if (left >= right) {
-    return;
-  }
-  int mid = left + (right - left) / 2;
-  MergeSortList(lst, left, mid);
-  MergeSortList(lst, mid + 1, right);
-  MergeList(lst, left, mid, right);
-}
+// static void BinaryInsertionList(std::list<int> &lst, std::pair<int, int> &value, int left, int right) {
+//   int mid = (left + right) / 2;
 
-static void MergeList(std::list<std::pair<int, int> > &lst, int left, int mid,
-                      int right) {
-  std::list<std::pair<int, int> > lst_temp;
-
-  std::list<std::pair<int, int> >::iterator iter_left = lst.begin();
-  std::list<std::pair<int, int> >::iterator iter_right = lst.begin();
-  std::advance(iter_left, left);
-  std::advance(iter_right, mid + 1);
-  std::list<std::pair<int, int> >::iterator iter = iter_left;
-
-  int left_index = left, right_index = mid + 1;
-  while (left_index <= mid && right_index <= right) {
-    if (*iter_left < *iter_right) {
-      lst_temp.push_back(*iter_left);
-      iter_left++;
-      left_index++;
-    } else {
-      lst_temp.push_back(*iter_right);
-      iter_right++;
-      right_index++;
-    }
-  }
-
-  while (left_index <= mid) {
-    lst_temp.push_back(*iter_left);
-    iter_left++;
-    left_index++;
-  }
-  while (right_index <= right) {
-    lst_temp.push_back(*iter_right);
-    iter_right++;
-    right_index++;
-  }
-
-  std::list<std::pair<int, int> >::iterator iter_temp = lst_temp.begin();
-  for (size_t i = 0; i < lst_temp.size(); ++i) {
-    (*iter) = *iter_temp;
-    iter++;
-    iter_temp++;
-  }
-}
-
-static void BinaryInsertionList(std::list<int> &lst, int value, int left, int right) {
-  int mid = (left + right) / 2;
-
-  while (left <= right) {
-    std::list<int>::iterator iter = lst.begin();
-    std::advance(iter, mid);
-    if (*iter < value) {
-      left = mid + 1;
-    } else {
-      right = mid - 1;
-    }
-    mid = (left + right) / 2;
-  }
-  std::list<int>::iterator iter = lst.begin();
-  std::advance(iter, left);
-  lst.insert(iter, value);
-}
+//   while (left <= right) {
+//     std::list<int>::iterator iter = lst.begin();
+//     std::advance(iter, mid);
+//     if (*iter < value.first) {
+//       left = mid + 1;
+//     } else {
+//       right = mid - 1;
+//     }
+//     mid = (left + right) / 2;
+//   }
+//   std::list<int>::iterator iter = lst.begin();
+//   std::advance(iter, left);
+//   // lst.insert(iter, value);
+// }
 
 void PmergeMe::IncreaseComparison() {
   comparison_++;
@@ -235,7 +162,7 @@ void PmergeMe::PrintComaprison() {
   std::cout << "comparison: " << comparison_ << "\n";
 }
 
-int getHighestIndexForLowestComparison(int k) {
+int GetHighestIndexForLowestComparison(int k) {
   if (k == 0) {
     return 0;
   }
