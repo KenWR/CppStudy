@@ -8,12 +8,13 @@
 #include <vector>
 
 // clang-format off
-static void BinaryInsertionVector(std::vector<std::pair<int, int> > &vec, std::pair<int, int> &value, int left, int right);
-static void BinaryInsertionVector(std::vector<int> &vec, int value, int left, int right);
+static void BinaryInsertionVector(std::vector<std::pair<int, int> > &vec, std::pair<int, int> &value);
+static void BinaryInsertionVector(std::vector<int> &vec, int value);
 // static void BinaryInsertionList(std::list<int> &lst, std::pair<int, int> &value, int left, int right);
 int GetHighestIndexForLowestComparison(int k);
 
 int PmergeMe::comparison_ = 0;
+int comp = 0;
 
 // Vector
 void PmergeMe::MergeInsertionSortVector(std::vector<int> &vec) {
@@ -33,73 +34,87 @@ void PmergeMe::MergeInsertionSortVector(std::vector<int> &vec) {
   
   std::vector<std::pair<int, int> > sorted;
   for (size_t i = 0; i < chained.size(); ++i) {
-    BinaryInsertionVector(sorted, chained[i], 0, sorted.size() - 1);
+    BinaryInsertionVector(sorted, chained[i]);
   }
 
-  // ============= 여기가 수열 사용 ===========
   std::vector<int> sequences;
-  for (size_t i = 0; ; ++i) {
+  for (size_t i = 1; ; ++i) {
     int sequence = GetHighestIndexForLowestComparison(i);
     if (sequence >= sorted.size()) {
-      sequence = sorted.size() - 1;
       sequences.push_back(sequence);
       break;
     }
     sequences.push_back(sequence);
+    if (sequences[i - 1] == sorted.size() - 1) {
+      break;
+    }
   }
 
   vec.clear();
-  for (size_t i = 0; i < sorted.size(); ++i) {
-    vec.push_back(sorted[i].first);
-  }
-  vec.insert(vec.begin(), sorted.front().second);
-
-  int count = 1;
+  vec.push_back(sorted[0].second);
   for (size_t i = 1; i < sequences.size(); ++i) {
-    int before = sequences[i - 1];
-    int current = sequences[i];
-    while (current > before) {
-      BinaryInsertionVector(vec, sorted[current].second, 0, (count * 2) - 1);
-      current--;
-      count++;
+    int index;
+
+    index = sequences[i - 1];
+    while (index < sequences[i]) {
+      vec.push_back(sorted[index].first);
+      index++;
     }
-    std::cout << "count: " << count *2 - 1<< '\n';
+    index = sequences[i];
+    if (index >= sorted.size() - 1) {
+      if (lefted != -1) {
+        BinaryInsertionVector(vec, lefted);
+        lefted = -1;
+      }
+      index = sorted.size() - 1;
+    }
+    while (index > sequences[i - 1]) {
+      BinaryInsertionVector(vec, sorted[index].second);
+      index--;
+    }
   }
-  // ========================================
+  vec.push_back(sorted[sorted.size() - 1].first);
+
 
   if (lefted != -1) {
-    BinaryInsertionVector(vec, lefted, 0, vec.size() - 1);
+    BinaryInsertionVector(vec, lefted);
   }
 }
 
-static void BinaryInsertionVector(std::vector<std::pair<int, int> > &vec, std::pair<int, int> &value, int left, int right) {
-  int mid = (left + right) / 2;
-
-  while (left <= right) {
-    if (vec[mid].first <= value.first) {
+static void BinaryInsertionVector(std::vector<std::pair<int, int> > &vec, std::pair<int, int> &value) {
+  int left = 0, right = static_cast<int>(vec.size());
+  
+  while (left < right) {
+    int mid = left + ((right - left) >> 1);
+    PmergeMe::IncreaseComparison();
+    comp++;
+    if (vec[mid].first < value.first) {
       left = mid + 1;
     } else {
-      right = mid - 1;
+      right = mid;
     }
-    mid = (left + right) / 2;
-    PmergeMe::IncreaseComparison();
   }
+  std::cout << comp << '\n';
+  comp = 0;
 
   vec.insert(vec.begin() + left, value);
 }
 
-static void BinaryInsertionVector(std::vector<int> &vec, int value, int left, int right) {
-  int mid = (left + right) / 2;
+static void BinaryInsertionVector(std::vector<int> &vec, int value) {
+  int left = 0, right = static_cast<int>(vec.size());
 
-  while (left <= right) {
+  while (left < right) {
+    int mid = left + ((right - left) >> 1);
+    PmergeMe::IncreaseComparison();
+    comp++;
     if (vec[mid] < value) {
       left = mid + 1;
     } else {
-      right = mid - 1;
+      right = mid;
     }
-    mid = (left + right) / 2;
-    PmergeMe::IncreaseComparison();
   }
+  std::cout << comp << '\n';
+  comp = 0;
 
   vec.insert(vec.begin() + left, value);
 }
@@ -174,7 +189,7 @@ int GetHighestIndexForLowestComparison(int k) {
     order = ((1 << (k + 1)) + 1) / 3;
   }
 
-  return order;
+  return order - 1;
 }
 
 // clang-format on

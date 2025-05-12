@@ -25,6 +25,12 @@ int main(int argc, char **argv) {
   ElapsedTime elapsed;
 
   for (int i = 1; i < argc; ++i) {
+    for (int j = 0; argv[i][j] != '\0'; ++j) {
+      if (isdigit(argv[i][j]) == false) {
+        std::cerr << "This is not number\n";
+        return 1;
+      }
+    }
     int number = atoi(argv[i]);
     vec.push_back(number);
     lst.push_back(number);
@@ -32,8 +38,16 @@ int main(int argc, char **argv) {
 
   if (IsPositiveSequence(vec) == false) {
     std::cerr << "Input numbers are not positive integer sequence\n";
+    return 1;
+  } else if (vec.size() <= 1) {
+    std::cerr << "There is no enough numbers to sort\n";
+    return 1;
+  } else if (vec.size() > 3000) {
+    std::cerr << "Not allowed to over 3000 numbers\n";
+    return 1;
   }
 
+  std::cout << "============== vector ==============\n";
   std::cout << "before: ";
   PrintContainer(vec);
   gettimeofday(&start, NULL);
@@ -43,26 +57,29 @@ int main(int argc, char **argv) {
   PrintContainer(vec);
 
   elapsed = GetTimeBreakdown(start, end);
-  std::cout << "Time to process a range of " << vec.size() << " elements with std::vector: "
-            << elapsed.seconds << " s " 
-            << elapsed.milliseconds << " ms "
-            << elapsed.microseconds << " us\n";
-  // PmergeMe::PrintComaprison();
+  // std::cout << "Time to process a range of " << vec.size() << " elements with std::vector: "
+  //           << elapsed.seconds << " s "
+  //           << elapsed.milliseconds << " ms "
+  //           << elapsed.microseconds << " us\n";
+  PmergeMe::PrintComaprison();
+  std::cout << "====================================\n\n";
 
-  std::cout << "before: ";
-  PrintContainer(lst);
-  gettimeofday(&start, NULL);
-  PmergeMe::MergeInsertionSortList(lst);
-  gettimeofday(&end, NULL);
-  std::cout << "after: ";
-  PrintContainer(lst);
+  // std::cout << "====================================\n";
+  // std::cout << "before: ";
+  // PrintContainer(lst);
+  // gettimeofday(&start, NULL);
+  // PmergeMe::MergeInsertionSortList(lst);
+  // gettimeofday(&end, NULL);
+  // std::cout << "after: ";
+  // PrintContainer(lst);
 
-  elapsed = GetTimeBreakdown(start, end);
-  std::cout << "Time to process a range of " << vec.size() << " elements with std::list: "
-            << elapsed.seconds << " s " 
-            << elapsed.milliseconds << " ms "
-            << elapsed.microseconds << " us\n";
+  // elapsed = GetTimeBreakdown(start, end);
+  // std::cout << "Time to process a range of " << vec.size() << " elements with std::list: "
+  //           << elapsed.seconds << " s " 
+  //           << elapsed.milliseconds << " ms "
+  //           << elapsed.microseconds << " us\n";
   // PmergeMe::PrintComaprison();
+  // std::cout << "====================================\n";
 }
 
 // Tools
