@@ -187,7 +187,7 @@ void PmergeMe::MergeInsertionSortList(std::list<std::pair<int, int> >& lst) {
   // Step iii: Insert the remaining b's into the main chain, using binary insertion, 
   // in the following order  (2^(k+l) + (-l)^k) /3 .
   lst.clear();
-  if (!sorted_winners.front().second != -1) {
+  if (sorted_winners.front().second != -1) {
     std::list<std::pair<int, int> >::iterator temp = losers.begin();
     std::advance(temp, sorted_winners.front().second);
     lst.push_back(*temp);
