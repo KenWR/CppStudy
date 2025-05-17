@@ -53,33 +53,31 @@ int main(int argc, char **argv) {
   gettimeofday(&start, NULL);
   PmergeMe::MergeInsertionSortVector(vec);
   gettimeofday(&end, NULL);
-  std::cout << "after: ";
+  std::cout << "after:  "; 
   PrintContainer(vec);
 
   elapsed = GetTimeBreakdown(start, end);
-  // std::cout << "Time to process a range of " << vec.size() << " elements with std::vector: "
-  //           << elapsed.seconds << " s "
-  //           << elapsed.milliseconds << " ms "
-  //           << elapsed.microseconds << " us\n";
-  PmergeMe::PrintComaprison();
+  std::cout << "Time to process a range of " << vec.size() << " elements with std::vector: "
+            << elapsed.seconds << " s "
+            << elapsed.milliseconds << " ms "
+            << elapsed.microseconds << " us\n";
   std::cout << "====================================\n\n";
 
-  // std::cout << "====================================\n";
-  // std::cout << "before: ";
-  // PrintContainer(lst);
-  // gettimeofday(&start, NULL);
-  // PmergeMe::MergeInsertionSortList(lst);
-  // gettimeofday(&end, NULL);
-  // std::cout << "after: ";
-  // PrintContainer(lst);
+  std::cout << "================ list ==============\n";
+  std::cout << "before: ";
+  PrintContainer(lst);
+  gettimeofday(&start, NULL);
+  PmergeMe::MergeInsertionSortList(lst);
+  gettimeofday(&end, NULL);
+  std::cout << "after: ";
+  PrintContainer(lst);
 
-  // elapsed = GetTimeBreakdown(start, end);
-  // std::cout << "Time to process a range of " << vec.size() << " elements with std::list: "
-  //           << elapsed.seconds << " s " 
-  //           << elapsed.milliseconds << " ms "
-  //           << elapsed.microseconds << " us\n";
-  // PmergeMe::PrintComaprison();
-  // std::cout << "====================================\n";
+  elapsed = GetTimeBreakdown(start, end);
+  std::cout << "Time to process a range of " << vec.size() << " elements with std::list: "
+            << elapsed.seconds << " s " 
+            << elapsed.milliseconds << " ms "
+            << elapsed.microseconds << " us\n";
+  std::cout << "====================================\n";
 }
 
 // Tools
