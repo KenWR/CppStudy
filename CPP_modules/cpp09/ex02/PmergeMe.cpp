@@ -12,8 +12,6 @@ static void BinaryInsertionVector(std::vector<std::pair<int, int> > &vec, std::p
 static void BinaryInsertionList(std::list<std::pair<int, int> > &lst, std::pair<int, int> &value);
 int GetSequence(int k);
 
-int PmergeMe::comparison_ = 0;
-
 // Vector
 void PmergeMe::MergeInsertionSortVector(std::vector<int> &vec) {
   std::vector<std::pair<int, int> > chained;
@@ -57,7 +55,6 @@ void PmergeMe::MergeInsertionSortVector(std::vector<std::pair<int, int> > &vec) 
       winners.push_back(vec[i + 1]);
       losers.push_back(vec[i]);
     }
-    PmergeMe::IncreaseComparison();
   }
   if (vec.size() % 2 && vec.size() > 1) {
     lefted = true;
@@ -106,15 +103,15 @@ void PmergeMe::MergeInsertionSortVector(std::vector<std::pair<int, int> > &vec) 
 }
 
 static void BinaryInsertionVector(std::vector<std::pair<int, int> > &vec, std::pair<int, int> &value) {
-  int left = 0, right = static_cast<int>(vec.size());
+  int left  = 0;
+  int right = static_cast<int>(vec.size()) - 1;
   
-  while (left < right) {
+  while (left <= right) {
     int mid = left + ((right - left) >> 1);
-    
-    if (vec[mid].first < value.first) {
-      left = mid + 1;
+    if (value.first < vec[mid].first) {
+        right = mid - 1;
     } else {
-      right = mid;
+        left = mid + 1;
     }
   }
 
@@ -143,7 +140,6 @@ void PmergeMe::MergeInsertionSortList(std::list<std::pair<int, int> >& lst) {
     std::list<std::pair<int, int> >::iterator a = lst.begin();
     std::list<std::pair<int, int> >::iterator b = a; 
     ++b;
-    IncreaseComparison();
     if (a->first > b->first) {
         std::pair<int, int> tmp = *a; 
         *a = *b; 
@@ -244,29 +240,28 @@ void PmergeMe::MergeInsertionSortList(std::list<std::pair<int, int> >& lst) {
 }
 
 static void BinaryInsertionList(std::list<std::pair<int, int> > &lst, std::pair<int, int> &value) {
-  int left = 0, right = static_cast<int>(lst.size());
+  if (lst.empty()) {
+    lst.push_front(value);
+    return;
+  }
 
-  while (left < right) {
-    std::list<std::pair<int, int> >::iterator iter = lst.begin();
+  int left  = 0;
+  int right = static_cast<int>(lst.size()) - 1;
+  while (left <= right) {
     int mid = left + ((right - left) >> 1);
-    std::advance(iter, mid);
-    if ((*iter).first < value.first) {
-      left = mid + 1;
+    std::list<std::pair<int,int> >::iterator midIt = lst.begin();
+    std::advance(midIt, mid);
+
+    if (value.first < midIt->first) {
+        right = mid - 1;
     } else {
-      right = mid;
+        left = mid + 1;
     }
   }
+
   std::list<std::pair<int, int> >::iterator iter = lst.begin();
   std::advance(iter, left);
   lst.insert(iter, value);
-}
-
-void PmergeMe::IncreaseComparison() {
-  comparison_++;
-}
-
-void PmergeMe::PrintComaprison() {
-  std::cout << "comparison: " << comparison_ << "\n";
 }
 
 int GetSequence(int k) {

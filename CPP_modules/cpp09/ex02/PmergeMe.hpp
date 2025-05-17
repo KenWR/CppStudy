@@ -8,9 +8,6 @@
 
 class PmergeMe {
 private:
-  static int comparison_;
-  static int sequence_;
-
   PmergeMe();
   ~PmergeMe();
   PmergeMe(const PmergeMe &);
@@ -19,8 +16,6 @@ private:
   static void MergeInsertionSortList(std::list<std::pair<int, int> > &lst);
 
 public:
-  static void IncreaseComparison();
-  static void PrintComaprison();
   static void MergeInsertionSortVector(std::vector<int> &vec);
   static void MergeInsertionSortList(std::list<int> &lst);
 
