@@ -18,7 +18,6 @@ private:
 public:
   static void MergeInsertionSortVector(std::vector<int> &vec);
   static void MergeInsertionSortList(std::list<int> &lst);
-
 };
 
 #endif // PmergeMe
