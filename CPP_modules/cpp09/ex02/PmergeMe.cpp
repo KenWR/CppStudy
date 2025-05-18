@@ -12,7 +12,7 @@ static void BinaryInsertionVector(std::vector<std::pair<int, int> > &vec, std::p
 static void BinaryInsertionList(std::list<std::pair<int, int> > &lst, std::pair<int, int> &value);
 int GetSequence(int k);
 
-// Vector
+// ==================== vector =============================
 void PmergeMe::MergeInsertionSortVector(std::vector<int> &vec) {
   std::vector<std::pair<int, int> > chained;
   for (size_t i = 0; i < vec.size(); ++i) {
@@ -67,9 +67,8 @@ void PmergeMe::MergeInsertionSortVector(std::vector<std::pair<int, int> > &vec) 
   // Step iii: Insert the remaining b's into the main chain, using binary insertion, 
   // in the following order  (2^(k+l) + (-l)^k) /3 .
   vec.clear();
-  if (sorted_winners[0].second != -1) {
-    vec.push_back(losers[sorted_winners[0].second]);
-  }
+  vec.push_back(losers[sorted_winners[0].second]);
+  // sequence가 sorted_winners보다 크기가 크면 남은 모든 winner들을 담고 loser들을 역순으로 이진삽입한다.
   for (size_t i = 1; ; ++i) {
     int current = GetSequence(i);
     int before = GetSequence(i - 1);
@@ -78,27 +77,21 @@ void PmergeMe::MergeInsertionSortVector(std::vector<std::pair<int, int> > &vec) 
     }
     int index = before;
     while (index < current) {
-      if (sorted_winners[index].second != -1) {
-        vec.push_back(winners[sorted_winners[index].second]);
-      }
+      vec.push_back(winners[sorted_winners[index].second]);
       index++;
     }
+    
     index = current;
     while (index > before) {
-      if (sorted_winners[index].second != -1) {
-        BinaryInsertionVector(vec, losers[sorted_winners[index].second]);
-      }
+      BinaryInsertionVector(vec, losers[sorted_winners[index].second]);
       index--;
     }
     if (current >= sorted_winners.size() - 1) {
       break;
     }
   }
-  if (sorted_winners.back().second != -1) {
+  if (vec.size() < winners.size() + losers.size()) {
     vec.push_back(winners[sorted_winners.back().second]);
-  }
-  if (lefted == true) {
-    BinaryInsertionVector(vec, losers.back());
   }
 }
 
@@ -118,7 +111,11 @@ static void BinaryInsertionVector(std::vector<std::pair<int, int> > &vec, std::p
   vec.insert(vec.begin() + left, value);
 }
 
+
+// ==================== list =============================
+
 void PmergeMe::MergeInsertionSortList(std::list<int> &lst) {
+
   std::list<std::pair<int, int> > chaind;
   for (std::list<int>::iterator it = lst.begin(); it != lst.end(); ++it) {
     chaind.push_back(std::make_pair(*it, -1));
@@ -140,10 +137,11 @@ void PmergeMe::MergeInsertionSortList(std::list<std::pair<int, int> >& lst) {
     std::list<std::pair<int, int> >::iterator a = lst.begin();
     std::list<std::pair<int, int> >::iterator b = a; 
     ++b;
+    // ++PmergeMe::comp_count_;
     if (a->first > b->first) {
-        std::pair<int, int> tmp = *a; 
-        *a = *b; 
-        *b = tmp;
+      std::pair<int, int> tmp = *a; 
+      *a = *b; 
+      *b = tmp;
     }
     return;
   }
@@ -154,13 +152,13 @@ void PmergeMe::MergeInsertionSortList(std::list<std::pair<int, int> >& lst) {
   std::list<std::pair<int, int> > winners;
   std::list<std::pair<int, int> > losers;
   bool lefted = false;
-  
 
   int idx = 0;
   std::list<std::pair<int, int> >::iterator it1 = lst.begin();
   std::list<std::pair<int, int> >::iterator it2 = it1;
   it2++;
   while (it1 != lst.end() && it2 != lst.end()) {
+    // ++PmergeMe::comp_count_;
     if (it1->first > it2->first) {
         sorted_winners.push_back(std::make_pair(it1->first, idx));
         winners.push_back(*it1);
@@ -187,55 +185,56 @@ void PmergeMe::MergeInsertionSortList(std::list<std::pair<int, int> >& lst) {
   // Step iii: Insert the remaining b's into the main chain, using binary insertion, 
   // in the following order  (2^(k+l) + (-l)^k) /3 .
   lst.clear();
-  if (sorted_winners.front().second != -1) {
-    std::list<std::pair<int, int> >::iterator temp = losers.begin();
-    std::advance(temp, sorted_winners.front().second);
-    lst.push_back(*temp);
-  }
+  std::list<std::pair<int, int> >::iterator temp = losers.begin();
+  std::advance(temp, sorted_winners.front().second);
+  lst.push_back(*temp);
   for (size_t i = 1; ; ++i) {
     int current = GetSequence(i);
     int before = GetSequence(i - 1);
     if (current > sorted_winners.size() - 1) {
       current = sorted_winners.size() - 1;
     }
+
+    // 승자 순서 삽입
     int index = before;
     std::list<std::pair<int, int> >::iterator sorted_winner;
     while (index < current) {
       std::list<std::pair<int, int> >::iterator sorted_winner = sorted_winners.begin();
       std::advance(sorted_winner, index);
-      if ((*sorted_winner).second != -1) {
-        std::list<std::pair<int, int> >::iterator winner = winners.begin();
-        std::advance(winner, (*sorted_winner).second);
-        lst.push_back(*winner);
-        index++;
-      }
+      std::list<std::pair<int, int> >::iterator winner = winners.begin();
+      std::advance(winner, (*sorted_winner).second);
+      lst.push_back(*winner);
+      index++;
     }
 
+    // 패자 역순 삽입
+    if (GetSequence(i) > current && lefted == true) {
+      std::list<std::pair<int, int> >::iterator sorted_winner = sorted_winners.end();
+      sorted_winner--;
+      std::list<std::pair<int, int> >::iterator winner = winners.begin();
+      std::advance(winner, (*sorted_winner).second);
+      lst.push_back(*winner);
+      BinaryInsertionList(lst, losers.back());
+    }
     index = current;
     while (index > before) {
       std::list<std::pair<int, int> >::iterator sorted_winner = sorted_winners.begin();
       std::advance(sorted_winner, index);
-      if ((*sorted_winner).second != -1) {
-        std::list<std::pair<int, int> >::iterator loser = losers.begin();
-        std::advance(loser, (*sorted_winner).second);
-        BinaryInsertionList(lst, *loser);
-        index--;
-      }
+      std::list<std::pair<int, int> >::iterator loser = losers.begin();
+      std::advance(loser, (*sorted_winner).second);
+      BinaryInsertionList(lst, *loser);
+      index--;
     }
-
     if (current >= sorted_winners.size() -1) {
       break;
     }
   }
-  if (sorted_winners.back().second != -1) {
+  if (lst.size() < winners.size() + losers.size()) {
     std::list<std::pair<int, int> >::iterator sorted_winner = sorted_winners.end();
     sorted_winner--;
     std::list<std::pair<int, int> >::iterator winner = winners.begin();
     std::advance(winner, (*sorted_winner).second);
     lst.push_back(*winner);
-  }
-  if (lefted == true) {
-    BinaryInsertionList(lst, losers.back());
   }
 }
 
@@ -276,7 +275,7 @@ int GetSequence(int k) {
     order = ((1 << (k + 1)) + 1) / 3;
   }
 
-  return order;
+  return order - 1;
 }
 
 // clang-format on
